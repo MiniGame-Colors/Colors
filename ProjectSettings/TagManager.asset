@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Colors
+  - groundCheck
+  - light
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Road
   - Gray
   - Player
-  - Frountground
+  - Ground
   - 
   - 
   - 

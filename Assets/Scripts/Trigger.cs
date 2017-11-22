@@ -11,51 +11,30 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour {
 
+    private float length = 0.0f;
+
     //道具进入灯光的范围的时候
     void OnTriggerEnter2D(Collider2D other) {
-            //Debug.Log(other);
-        
+        //只需要进入一次，后面就记住这个距离，一直用这个距离来测试
+        if(length == 0 && other.CompareTag("light"))
+        {
+            length = Mathf.Abs(other.gameObject.transform.position.x - this.transform.position.x);
+        }
     }
 
+    //根据距离判断alpha值，起到颜色渐变效果
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Colors"))
+        if (other.CompareTag("light"))
         {
-            //显示灰白的子对象
-            //Transform gray = (other.gameObject.transform.GetChild(0)) as Transform;
-            //gray.gameObject.SetActive(false);
-            //隐藏彩色的子对象
-            //Transform color = (other.gameObject.transform.GetChild(1)) as Transform;
-            //color.gameObject.SetActive(true);
+            float temp = Mathf.Abs(other.gameObject.transform.position.x - this.transform.position.x);
 
-            SpriteRenderer[] sprite = other.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
-            Debug.Log(sprite[0].name);
-            float alpha = Mathf.Lerp(sprite[0].color.a, 0.0f, 2.0f * Time.deltaTime);
+            SpriteRenderer[] sprite = this.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
+
+            float alpha = temp / length;
 
             sprite[0].color = new Vector4(sprite[0].color.r, sprite[0].color.g, sprite[0].color.b, alpha);
-
         }
-        
 
-    }
-
-    //道具离开灯光的范围的时候
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Colors"))
-        {
-            //显示灰白的子对象
-            //Transform gray = (other.gameObject.transform.GetChild(0)) as Transform;
-            //gray.gameObject.SetActive(false);
-            //隐藏彩色的子对象
-            //Transform color = (other.gameObject.transform.GetChild(1)) as Transform;
-            //color.gameObject.SetActive(true);
-
-            SpriteRenderer[] sprite = other.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
-            Debug.Log(sprite[0].name);
-            float alpha = Mathf.Lerp(sprite[0].color.a, 1.0f, 2.0f * Time.deltaTime);
-
-            sprite[0].color = new Vector4(sprite[0].color.r, sprite[0].color.g, sprite[0].color.b, 1);
-
-        }
     }
 }
