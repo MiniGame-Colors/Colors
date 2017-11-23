@@ -68,30 +68,37 @@ public class PlayerController : MonoBehaviour
         //关于layerMask的说明详见官网API
 
         animator.SetBool("grounded", grounded);
-        animator.SetBool("push", Input.GetKey(KeyCode.J));
-        animator.SetBool("climb", Input.GetKey(KeyCode.K));
-        animator.SetBool("dead", Input.GetKey(KeyCode.L));
 
-        //用于测试，暂时按M键获得能力
-        if (Input.GetKey(KeyCode.M)) {
-            light.SetActive(true);
+
+        if (DataTransformer.enableInput) {
+            animator.SetBool("push", Input.GetKey(KeyCode.J));
+            animator.SetBool("climb", Input.GetKey(KeyCode.K));
+            animator.SetBool("dead", Input.GetKey(KeyCode.L));
+
+            //用于测试，暂时按M键获得能力
+            if (Input.GetKey(KeyCode.M)) {
+                light.SetActive(true);
+            }
+
+            if (Input.GetKey(KeyCode.T)) {
+                talkPanel.GetComponent<Canvas>().enabled = true;
+                talk.GetComponent<TalkManager>().isTalk = true;
+            }
+
+            // 只有当角色落地的时候才能跳跃
+            if (Input.GetButtonDown("Jump") && grounded)
+                jump = true;
         }
-
-        if (Input.GetKey(KeyCode.T)) {
-            talkPanel.GetComponent<Canvas>().enabled = true;
-            talk.GetComponent<TalkManager>().isTalk = true;
-        }
-
-        // If the jump button is pressed and the player is grounded then the player should jump.
-        if (Input.GetButtonDown("Jump") && grounded)
-            jump = true;
     }
 
 
     void FixedUpdate()
     {
         // 获取输入
-        float h = Input.GetAxis("Horizontal");
+        float h = 0.0f;
+        if (DataTransformer.enableInput) {
+            h = Input.GetAxis("Horizontal");
+        }
 
 
         /*--------------------------------这部分是采用加速的代码--------------------------------------------*/
