@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private GameObject light;
 
+    //箱子实例
+    private Rigidbody2D box;
+
     void Awake()
     {
         //获取刚体组件实例
@@ -49,11 +52,37 @@ public class PlayerController : MonoBehaviour
 
         groundCheck = transform.Find("groundCheck");
         light = GameObject.Find("light");
+
+
+        Messenger.AddListener("Death", Death);
     }
+
 
     void Start() {
         //默认没有开启能力,如果要开启能力，设置为true即可
         light.SetActive(false);
+        
+        //这句代码不能放在Awake里面
+        GameObject boxObject = GameObject.FindGameObjectWithTag("box");
+        if (boxObject) {
+            box = boxObject.GetComponent<Rigidbody2D>();
+        }else {
+            box = null;
+        }
+    }
+
+    void OnDestroy() {
+        Messenger.RemoveListener("Death", Death);
+    }
+
+    //死亡函数
+    void Death() {
+
+        animator.SetBool("dead", true);
+        DataTransformer.enableInput = false;
+
+        //显示提示框
+        PromptManager.Instance.PromptShow("你被玻璃扎死了");
     }
 
     void Update()
@@ -69,17 +98,33 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("grounded", grounded);
 
-
+        //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
-            animator.SetBool("push", Input.GetKey(KeyCode.J));
+
+            //推箱子
+            if (Input.GetKey(KeyCode.J)) {
+                animator.SetBool("push", true);
+
+                if (box) {
+                    box.bodyType = RigidbodyType2D.Dynamic;
+                }
+            } else {
+                animator.SetBool("push", false);
+
+                if (box) {
+                    box.bodyType = RigidbodyType2D.Static;
+                }
+            }
+
             animator.SetBool("climb", Input.GetKey(KeyCode.K));
-            animator.SetBool("dead", Input.GetKey(KeyCode.L));
 
             //用于测试，暂时按M键获得能力
             if (Input.GetKey(KeyCode.M)) {
-                light.SetActive(true);
+                DataTransformer.yellow = true;
             }
+            light.SetActive(DataTransformer.yellow);
 
+            //对话框
             if (Input.GetKey(KeyCode.T)) {
                 talkPanel.GetComponent<Canvas>().enabled = true;
                 talk.GetComponent<TalkManager>().isTalk = true;

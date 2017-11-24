@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceenTransformation : MonoBehaviour {
+public class Death : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
 
         if (other.CompareTag("Player")) {
-
-            SceneManager.LoadScene(this.name, LoadSceneMode.Single);
+            Messenger.Broadcast("Death");
         }
     }
+
 }

@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
         if (DataTransformer.beginGame) {
             StartCoroutine(Tranformation());
 
-            DataTransformer.beginGame = true;
+            DataTransformer.beginGame = false;
         } else {
             this.transform.position = new Vector3(parent.transform.position.x, -2.6f, -100);
             this.transform.parent = parent.transform;
