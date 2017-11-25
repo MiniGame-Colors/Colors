@@ -51,14 +51,10 @@ public class PlayerController : MonoBehaviour
 
         //监测死亡事件
         Messenger.AddListener("Death", Death);
-        Messenger.AddListener("Push", Push);
-        Messenger.AddListener("EndPush", EndPush);
     }
 
     void OnDestroy() {
         Messenger.RemoveListener("Death", Death);
-        Messenger.RemoveListener("Push", Push);
-        Messenger.RemoveListener("EndPush", EndPush);
     }
 
     //死亡函数
@@ -84,16 +80,6 @@ public class PlayerController : MonoBehaviour
         DataTransformer.enableInput = true;
     }
 
-
-    void Push() {
-        if (grounded) {
-            animator.SetBool("push", true);
-        }
-    }
-
-    void EndPush() {
-        animator.SetBool("push", false);
-    }
 
     void Start() {
         //默认没有开启能力,如果要开启能力，设置为true即可
@@ -125,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
             //播放攀爬动作
             animator.SetBool("climb", Input.GetKey(KeyCode.K));
-            animator.SetBool("push", Input.GetKey(KeyCode.J));
+            
 
             //用于测试，暂时按M键获得能力
             if (Input.GetKey(KeyCode.M)) {
@@ -164,7 +150,8 @@ public class PlayerController : MonoBehaviour
         body.velocity = new Vector2(velocityX, velocityY);
         /*---------------------------------------------------------------------------------------------------*/
 
-        animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
+        //Debug.Log(DataTransformer.push);
+
 
         // h>0说明角色正要朝右走，facingRight==false说明角色当前朝向为左，需要转向
         if (h > 0 && !facingRight)
@@ -172,6 +159,16 @@ public class PlayerController : MonoBehaviour
         // h<0说明角色正要朝左走，facingRight==true说明角色当前朝向为右，需要转向
         else if (h < 0 && facingRight)
             Flip();
+
+
+        if (!DataTransformer.push) {
+            animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
+        } else {
+            animator.SetFloat("velocityX", 0);
+        }
+
+
+        animator.SetBool("push", DataTransformer.push && (h * DataTransformer.deltaLength < 0));
 
         // 假如当前正处于跳跃状态下
         if (jump)

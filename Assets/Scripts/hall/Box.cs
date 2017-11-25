@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class Box : MonoBehaviour {
 
-	//void OnTriggerEnter2D(Collider2D other) {
-
- //       if (other.CompareTag("Player") && DataTransformer.grounded) {
-
-            
-            
-
- //       }
-
- //   }
+    private float length = 2.77f;
 
     void OnTriggerStay2D(Collider2D other) {
 
-        if (Mathf.Abs(other.transform.position.x - this.transform.position.x) < 6.0f) {
-            Messenger.Broadcast("Push");
+        if (Mathf.Abs(other.transform.position.x - this.transform.position.x) < length && !DataTransformer.push) {
+            DataTransformer.deltaLength = other.transform.position.x - this.transform.position.x;
+            DataTransformer.push = true;
 
-            this.transform.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            StartCoroutine(ChangeBodyType());
         }
 
     }
@@ -29,10 +21,17 @@ public class Box : MonoBehaviour {
 
         if (other.CompareTag("Player")) {
 
-            Messenger.Broadcast("EndPush");
+            DataTransformer.push = false;
+
             this.transform.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         }
 
+    }
+
+    IEnumerator ChangeBodyType() {
+        yield return new WaitForSeconds(0.5f);
+
+        this.transform.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 }
