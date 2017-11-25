@@ -18,16 +18,12 @@ public class CameraController : MonoBehaviour {
         parent = GameObject.FindGameObjectWithTag("Player");
         startMoving = false;
 
-        if (DataTransformer.beginGame) {
-            StartCoroutine(Tranformation());
 
-            DataTransformer.beginGame = false;
-        } else {
-            this.transform.position = new Vector3(parent.transform.position.x, -2.6f, -100);
-            this.transform.parent = parent.transform;
-        }
-	}
-	
+        StartCoroutine(Tranformation());
+    }
+
+
+
     void Update() {
         if (startMoving) {
             currentPosition = Vector2.MoveTowards(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
@@ -42,6 +38,8 @@ public class CameraController : MonoBehaviour {
                 DataTransformer.enableInput = true;
             }
         }
+
+
     }
 
 	IEnumerator Tranformation() {
@@ -51,9 +49,18 @@ public class CameraController : MonoBehaviour {
         yield return new WaitForSeconds(time);
 
         currentPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        targetPosition = new Vector2(parent.transform.position.x, -2.6f);
+        targetPosition = new Vector2(parent.transform.position.x, parent.transform.position.y + 1.4f);
 
         //让镜头开始移动
         startMoving = true;
+    }
+
+
+    void freeFromPlayer() {
+        this.transform.parent = null;
+    }
+
+    void bindToPlayer() {
+        this.transform.parent = parent.transform;
     }
 }

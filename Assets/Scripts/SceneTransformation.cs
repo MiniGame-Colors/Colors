@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+public class SceneTransformation : MonoBehaviour {
 
-public class Door : MonoBehaviour {
-
-    public float pausedTime;
     public Vector2 position;
+    public float pausedTime;
 
     private Transform player;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.CompareTag("Player")) {
+
+            StartCoroutine(ChangeScene());
+
+        }
     }
 
     IEnumerator ChangeScene() {
@@ -24,19 +31,7 @@ public class Door : MonoBehaviour {
 
         player.position = new Vector3(position.x, position.y, player.position.z);
 
-    }
+        DataTransformer.position = player.position;
 
-    void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.CompareTag("Player")) {
-
-            if (DataTransformer.yellow) {
-
-                StartCoroutine(ChangeScene());
-
-            }else {
-                PromptManager.Instance.PromptShow("前面好像有什么东西");
-            }
-        }
     }
 }

@@ -20,15 +20,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool jump = false;
 
-    //用于加速移动
-    //public float moveForce = 1000f;
-    //public float maxSpeed = 5f;
 
     public float moveSpeed = 100.0f;
     public float jumpSpeed = 250.0f;
-    //public float jumpForce = 100.0f;
-    //private float jumpScale = 100;
-    
+
     public float minSpeedY = -5.0f;
 
     public GameObject talk;
@@ -54,9 +49,51 @@ public class PlayerController : MonoBehaviour
         light = GameObject.Find("light");
 
 
+        //监测死亡事件
         Messenger.AddListener("Death", Death);
+        Messenger.AddListener("Push", Push);
+        Messenger.AddListener("EndPush", EndPush);
     }
 
+    void OnDestroy() {
+        Messenger.RemoveListener("Death", Death);
+        Messenger.RemoveListener("Push", Push);
+        Messenger.RemoveListener("EndPush", EndPush);
+    }
+
+    //死亡函数
+    void Death() {
+
+        StartCoroutine(Restart());
+
+    }
+
+    IEnumerator Restart() {
+        animator.SetBool("dead", true);
+        DataTransformer.enableInput = false;
+
+        //EffectManager.Instance.EffectShow();
+
+        yield return new WaitForSeconds(2.0f);
+
+        
+        this.transform.position = DataTransformer.position;
+        animator.SetBool("dead", false);
+
+        yield return new WaitForSeconds(1.0f);
+        DataTransformer.enableInput = true;
+    }
+
+
+    void Push() {
+        if (grounded) {
+            animator.SetBool("push", true);
+        }
+    }
+
+    void EndPush() {
+        animator.SetBool("push", false);
+    }
 
     void Start() {
         //默认没有开启能力,如果要开启能力，设置为true即可
@@ -71,57 +108,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnDestroy() {
-        Messenger.RemoveListener("Death", Death);
-    }
-
-    //死亡函数
-    void Death() {
-
-        animator.SetBool("dead", true);
-        DataTransformer.enableInput = false;
-
-        //显示提示框
-        PromptManager.Instance.PromptShow("你被玻璃扎死了");
-    }
+    
 
     void Update()
     {
-        // 创建一个空GameObject，把这个对象的中心放在角色脚底偏下的地方，
-        // 只要这个对象的中心到角色的中心之间出现东西，就是落地了
+        //检测是否落地
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        //layerMask使用bitmap来记录哪些layer是开启的（对应位数为1），哪些layer是关闭的（对应位数为0）
-        //现在只想检测Ground这一层，LayerMask.NameToLayer("Ground")得到Ground的层数
-        //注意，需要在场景里面把所有可以落地的物体的layer换成Ground
-        //再使用位运算使得Ground在bitmap里对应的bit为1
-        //关于layerMask的说明详见官网API
+        DataTransformer.grounded = grounded;
 
+
+        //播放站立动画
         animator.SetBool("grounded", grounded);
 
         //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
 
-            //推箱子
-            if (Input.GetKey(KeyCode.J)) {
-                animator.SetBool("push", true);
-
-                if (box) {
-                    box.bodyType = RigidbodyType2D.Dynamic;
-                }
-            } else {
-                animator.SetBool("push", false);
-
-                if (box) {
-                    box.bodyType = RigidbodyType2D.Static;
-                }
-            }
-
+            //播放攀爬动作
             animator.SetBool("climb", Input.GetKey(KeyCode.K));
+            animator.SetBool("push", Input.GetKey(KeyCode.J));
 
             //用于测试，暂时按M键获得能力
             if (Input.GetKey(KeyCode.M)) {
                 DataTransformer.yellow = true;
             }
+
+
             light.SetActive(DataTransformer.yellow);
 
             //对话框
@@ -145,19 +156,6 @@ public class PlayerController : MonoBehaviour
             h = Input.GetAxis("Horizontal");
         }
 
-
-        /*--------------------------------这部分是采用加速的代码--------------------------------------------*/
-        // 当前速度没有达到最大速度（h和 body.velocity.x的符号相同） 或者正在向左行走(h<0 但是 body.velocity.x > 0)
-        //if (h * body.velocity.x < maxSpeed)
-        //    //增加向前的力让角色加速，h的方向就是角色行进的方向,加速前进
-        //    body.AddForce(Vector2.right * h * moveForce * Time.deltaTime);
-
-        ////限制物体的速度
-        //if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
-        //    //根据物体当前速度的方向Mathf.Sign(body.velocity.x)来限制
-        //    body.velocity = new Vector2(Mathf.Sign(body.velocity.x) * maxSpeed, body.velocity.y);
-        /*---------------------------------------------------------------------------------------------------*/
-
         /*--------------------------------这部分是采用恒定速度的代码--------------------------------------------*/
         //因为h还是从0到1逐渐变化的，所以这里也是加速移动，只是幅度比较小
         //保持帧率平衡
@@ -178,10 +176,6 @@ public class PlayerController : MonoBehaviour
         // 假如当前正处于跳跃状态下
         if (jump)
         {
-            // 给角色添加一个向上的力
-            //body.AddForce(new Vector2(0f, jumpForce * Time.deltaTime * jumpScale));
-
-            //加力跳跃需要的力太大
             //所以直接给角色设置向上的速度
             body.velocity = new Vector2(0, jumpSpeed * Time.deltaTime);
 

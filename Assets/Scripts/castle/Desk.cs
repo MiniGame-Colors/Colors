@@ -5,25 +5,16 @@ using UnityEngine;
 public class Desk : MonoBehaviour {
 
 	private bool hasStarted;
+    private float detectedLength = 5.0f;
 
     public float pausedTime = 1.0f;
 
 	void Start () {
-        Debug.Log(DataTransformer.deskBroken);
-        if (!DataTransformer.deskBroken) {
-            //隐藏破碎的瓶子
-            Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
-            shatteredBottole.gameObject.SetActive(false);
 
-            hasStarted = false;
-        }else {
-            //隐藏正常的瓶子
-            Transform bottole = (this.gameObject.transform.GetChild(1)) as Transform;
-            bottole.gameObject.SetActive(false);
+        Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
+        shatteredBottole.gameObject.SetActive(false);
 
-            hasStarted = true;
-        }
-
+        hasStarted = false;
     }
 
 
@@ -31,7 +22,7 @@ public class Desk : MonoBehaviour {
         if (other.CompareTag("Player")){
             float length = Mathf.Abs(other.gameObject.transform.position.x - this.transform.position.x);
 
-            if (length <= 1.0 && !hasStarted) {
+            if (length <= detectedLength && !hasStarted) {
                
                 StartCoroutine(PauseGame());
 
@@ -45,7 +36,7 @@ public class Desk : MonoBehaviour {
         hasStarted = true;
 
         //显示黑屏动画
-        EffectManager.Instance.EffectShow();
+        EffectManager.Instance.EffectShow2();
 
         //禁止输入
         DataTransformer.enableInput = false;
@@ -54,16 +45,15 @@ public class Desk : MonoBehaviour {
 
 
         //显示提示框
-        PromptManager.Instance.PromptShow("镜子碎了");
+        //PromptManager.Instance.PromptShow("镜子碎了");
+
+
         //显示破碎的瓶子图片
         Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
         shatteredBottole.gameObject.SetActive(true);
         //隐藏正常的瓶子
         Transform bottole = (this.gameObject.transform.GetChild(1)) as Transform;
         bottole.gameObject.SetActive(false);
-
-        DataTransformer.deskBroken = true;
-
 
         //恢复输入
         DataTransformer.enableInput = true;
