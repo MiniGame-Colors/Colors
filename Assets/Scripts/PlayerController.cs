@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool jump = false;
 
-
+    public float climbSpeed = 50.0f;
     public float moveSpeed = 100.0f;
     public float jumpSpeed = 250.0f;
 
@@ -94,57 +94,47 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator Climb() {
-        //禁用输入
-        DataTransformer.enableInput = false;
-        
-        this.body.bodyType = RigidbodyType2D.Static;
-
-        yield return new WaitForSeconds(3.0f);
-
-        this.body.bodyType = RigidbodyType2D.Dynamic;
-
-        DataTransformer.enableInput = true;
-    }
-
-
     void Update()
     {
         //检测是否落地
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         DataTransformer.grounded = grounded;
 
-
-        //播放站立动画
-        animator.SetBool("grounded", grounded);
-
-        //Debug.Log(DataTransformer.climb);
-        animator.SetBool("climb", DataTransformer.climb);
+        
         if (DataTransformer.climb) {
+            //animator.SetBool("grounded", false);
 
-            if (DataTransformer.enableInput && Input.GetAxis("Vertical") > 0) {
+            
+            //禁用输入
+            DataTransformer.enableInput = false;
+ 
+            this.body.gravityScale = 0;
+ 
+            
 
-                StartCoroutine(Climb());
+            
+            //在这里上下移动角色位置
 
-            }else {
-                Debug.Log("climb");
-                //在这里上下移动角色位置
-                float positionY;
-                if(this.transform.position.y < -10) {
-                    positionY = this.transform.position.y + 1 * Time.deltaTime;
-                }else {
-                    positionY = this.transform.position.y - 1 * Time.deltaTime;
-                }
-                this.transform.position = new Vector3(this.transform.position.x, positionY, this.transform.position.z);
+            if (this.transform.position.y >= -10.0f && climbSpeed > 0) {
+                climbSpeed = -climbSpeed;
             }
+            if (this.transform.position.y <= -13.7 && climbSpeed < 0) {
+                this.body.gravityScale = 2;
+                DataTransformer.enableInput = true;
+                DataTransformer.climb = false;
+                Debug.Log("end");
+            }
+
+            
+        } else {
+            //播放站立动画
+            animator.SetBool("grounded", grounded);
         }
+
+        animator.SetBool("climb", DataTransformer.climb);
 
         //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
-
-            //播放攀爬动作
-            animator.SetBool("climb", Input.GetKey(KeyCode.K));
-            
 
             //用于测试，暂时按M键获得能力
             if (Input.GetKey(KeyCode.M)) {
@@ -174,7 +164,9 @@ public class PlayerController : MonoBehaviour
         if (DataTransformer.enableInput) {
             h = Input.GetAxis("Horizontal");
         }else {
-            return;
+            if (DataTransformer.climb) {
+                body.velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime);
+            }
         }
 
         /*--------------------------------这部分是采用恒定速度的代码--------------------------------------------*/
