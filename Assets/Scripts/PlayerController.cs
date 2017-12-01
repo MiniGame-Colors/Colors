@@ -94,7 +94,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    IEnumerator Climb() {
+        //禁用输入
+        DataTransformer.enableInput = false;
+        
+        this.body.bodyType = RigidbodyType2D.Static;
+
+        yield return new WaitForSeconds(3.0f);
+
+        this.body.bodyType = RigidbodyType2D.Dynamic;
+
+        DataTransformer.enableInput = true;
+    }
+
 
     void Update()
     {
@@ -105,6 +117,27 @@ public class PlayerController : MonoBehaviour
 
         //播放站立动画
         animator.SetBool("grounded", grounded);
+
+        //Debug.Log(DataTransformer.climb);
+        animator.SetBool("climb", DataTransformer.climb);
+        if (DataTransformer.climb) {
+
+            if (DataTransformer.enableInput && Input.GetAxis("Vertical") > 0) {
+
+                StartCoroutine(Climb());
+
+            }else {
+                Debug.Log("climb");
+                //在这里上下移动角色位置
+                float positionY;
+                if(this.transform.position.y < -10) {
+                    positionY = this.transform.position.y + 1 * Time.deltaTime;
+                }else {
+                    positionY = this.transform.position.y - 1 * Time.deltaTime;
+                }
+                this.transform.position = new Vector3(this.transform.position.x, positionY, this.transform.position.z);
+            }
+        }
 
         //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
@@ -140,6 +173,8 @@ public class PlayerController : MonoBehaviour
         float h = 0.0f;
         if (DataTransformer.enableInput) {
             h = Input.GetAxis("Horizontal");
+        }else {
+            return;
         }
 
         /*--------------------------------这部分是采用恒定速度的代码--------------------------------------------*/

@@ -10,11 +10,14 @@ static public class DataTransformer {
     public static bool yellow = false;
     //控制用户输入
     public static bool enableInput = true;
-
+    //检测用户此时是否着地
     public static bool grounded = true;
-
+    //检测用户此时是否处于推箱子的状态
     public static bool push = false;
     public static float deltaLength;
 
+    public static bool climb = false;
+
+    //存档位置
     public static Vector3 position = new Vector3(-21.35f, -1.12582f, -10.0f);
 }
