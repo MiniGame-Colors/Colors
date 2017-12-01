@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        
+        //让角色回到存档的位置
         this.transform.position = DataTransformer.position;
         animator.SetBool("dead", false);
 
@@ -150,8 +150,6 @@ public class PlayerController : MonoBehaviour
         body.velocity = new Vector2(velocityX, velocityY);
         /*---------------------------------------------------------------------------------------------------*/
 
-        //Debug.Log(DataTransformer.push);
-
 
         // h>0说明角色正要朝右走，facingRight==false说明角色当前朝向为左，需要转向
         if (h > 0 && !facingRight)
@@ -160,7 +158,7 @@ public class PlayerController : MonoBehaviour
         else if (h < 0 && facingRight)
             Flip();
 
-
+        //当角色正在push的时候，不播放行走动画
         if (!DataTransformer.push) {
             animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
         } else {

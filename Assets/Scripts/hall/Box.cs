@@ -8,11 +8,13 @@ public class Box : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other) {
 
-        if (Mathf.Abs(other.transform.position.x - this.transform.position.x) < length && !DataTransformer.push) {
-            DataTransformer.deltaLength = other.transform.position.x - this.transform.position.x;
-            DataTransformer.push = true;
+        if (other.CompareTag("Player")) {
+            if (Mathf.Abs(other.transform.position.x - this.transform.position.x) < length && !DataTransformer.push) {
+                DataTransformer.deltaLength = other.transform.position.x - this.transform.position.x;
+                DataTransformer.push = true;
 
-            StartCoroutine(ChangeBodyType());
+                StartCoroutine(ChangeBodyType());
+            }
         }
 
     }
@@ -23,13 +25,14 @@ public class Box : MonoBehaviour {
 
             DataTransformer.push = false;
 
+            //设置箱子不能移动
             this.transform.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-
         }
 
     }
 
     IEnumerator ChangeBodyType() {
+        //延时五秒之后让箱子可以被移动
         yield return new WaitForSeconds(0.5f);
 
         this.transform.GetComponentInParent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

@@ -17,6 +17,4 @@ static public class DataTransformer {
     public static float deltaLength;
 
     public static Vector3 position = new Vector3(-21.35f, -1.12582f, -10.0f);
-    //public static Vector2 position;
-    //public static int facingDirectio = 1;
 }
