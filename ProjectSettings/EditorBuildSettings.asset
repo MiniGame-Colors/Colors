@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 058eb6c170ffe92409476cb78e6452f8
   - enabled: 1
-    path: Assets/Scenes/BedRoom.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: d4ce170f56b9e034ab2cd32ffccc9650
+  - enabled: 1
+    path: Assets/Scenes/Episode1Sence.unity
+    guid: 33fbb3dea85b5cd42ab42e8853640142
+  - enabled: 1
+    path: Assets/Scenes/MainScenes.unity
     guid: 6accf6ecf5d57ac4e973674edfc725e4
-  - enabled: 0
-    path: Assets/Scenes/Hall.unity
-    guid: 2cef7256cb863b74caa78b0bd4144c3c
