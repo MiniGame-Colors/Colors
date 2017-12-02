@@ -9,6 +9,7 @@ TagManager:
   - light
   - box
   - Enemy
+  - flag
   layers:
   - Default
   - TransparentFX

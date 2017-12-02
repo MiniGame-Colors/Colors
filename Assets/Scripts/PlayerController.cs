@@ -13,8 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool facingRight = true;
     [HideInInspector]
@@ -39,8 +38,7 @@ public class PlayerController : MonoBehaviour
     //箱子实例
     private Rigidbody2D box;
 
-    void Awake()
-    {
+    void Awake() {
         //获取刚体组件实例
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -84,14 +82,20 @@ public class PlayerController : MonoBehaviour
     void Start() {
         //默认没有开启能力,如果要开启能力，设置为true即可
         light.SetActive(false);
-        
+
         //这句代码不能放在Awake里面
         GameObject boxObject = GameObject.FindGameObjectWithTag("box");
         if (boxObject) {
             box = boxObject.GetComponent<Rigidbody2D>();
-        }else {
+        } else {
             box = null;
         }
+    }
+
+    IEnumerator continueInput() {
+        yield return new WaitForSeconds(1.0f);
+
+        DataTransformer.enableInput = true;
     }
 
     void Update()
@@ -102,27 +106,20 @@ public class PlayerController : MonoBehaviour
 
         
         if (DataTransformer.climb) {
-            //animator.SetBool("grounded", false);
-
-            
-            //禁用输入
+           //禁用输入
             DataTransformer.enableInput = false;
- 
+            //设置角色重力为0
             this.body.gravityScale = 0;
- 
-            
 
-            
-            //在这里上下移动角色位置
-
-            if (this.transform.position.y >= -10.0f && climbSpeed > 0) {
-                climbSpeed = -climbSpeed;
-            }
-            if (this.transform.position.y <= -13.7 && climbSpeed < 0) {
+            //-13.6为测试值
+            if (this.transform.position.y <= -13.6 && body.velocity.y < 0) {
                 this.body.gravityScale = 2;
-                DataTransformer.enableInput = true;
+                
                 DataTransformer.climb = false;
-                Debug.Log("end");
+
+
+                //动画结束会有延时，所以。。。
+                StartCoroutine(continueInput());
             }
 
             
@@ -165,7 +162,7 @@ public class PlayerController : MonoBehaviour
             h = Input.GetAxis("Horizontal");
         }else {
             if (DataTransformer.climb) {
-                body.velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime);
+                body.velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
             }
         }
 

@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62712650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.36, y: 1.7, z: 1}
+  m_LocalPosition: {x: 14.36, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1197926985}
@@ -711,11 +711,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4960084473560826, guid: 840a3ea4e78e94b4ba8ca61956585a56, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 70.7
+      value: -21.6
       objectReference: {fileID: 0}
     - target: {fileID: 4960084473560826, guid: 840a3ea4e78e94b4ba8ca61956585a56, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -13.5
+      value: -1.12674
       objectReference: {fileID: 0}
     - target: {fileID: 4960084473560826, guid: 840a3ea4e78e94b4ba8ca61956585a56, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2242,8 +2242,8 @@ GameObject:
   - component: {fileID: 1036223542}
   - component: {fileID: 1036223541}
   m_Layer: 0
-  m_Name: "\u5C0F\u7EB8\u6761"
-  m_TagString: Untagged
+  m_Name: flag
+  m_TagString: flag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3500,7 +3500,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.25, y: 2.72}
+  m_Size: {x: 7.25, y: 3.51}
   m_EdgeRadius: 0
 --- !u!114 &1403846081
 MonoBehaviour:
@@ -4299,7 +4299,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2085435776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.5, y: -13.2, z: -100}
+  m_LocalPosition: {x: -17.6, y: -0.3, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -15,8 +15,10 @@ static public class DataTransformer {
     //检测用户此时是否处于推箱子的状态
     public static bool push = false;
     public static float deltaLength;
-
+    //检测角色当前是否处于攀爬状态
     public static bool climb = false;
+    //确保角色不会一直处于攀爬状态
+    public static bool hasClimbed = false;
 
     //存档位置
     public static Vector3 position = new Vector3(-21.35f, -1.12582f, -10.0f);
