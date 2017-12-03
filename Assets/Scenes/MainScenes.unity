@@ -134,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 24287647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.82, y: -1.89, z: 2}
+  m_LocalPosition: {x: 7.1200027, y: -1.6199994, z: 2}
   m_LocalScale: {x: 0.39936894, y: 0.4068706, z: 1}
   m_Children: []
   m_Father: {fileID: 2047238285}
@@ -200,7 +200,7 @@ MonoBehaviour:
   PatrolSpeed: 1
   PursuitSpeed: 2
   Princess: {fileID: 64554560}
-  AlertDistance: 7
+  AlertDistance: 13
   FleeDistance: 8
   EnemyState: 0
   time: 0
