@@ -37,7 +37,7 @@ public class WallDown : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {

@@ -156,7 +156,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.25, y: 5.31}
+    oldSize: {x: 2.57, y: 3.37}
     newSize: {x: 4.25, y: 5.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1874,7 +1874,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.25, y: 5.31}
+    oldSize: {x: 2.57, y: 3.37}
     newSize: {x: 4.25, y: 5.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1992,7 +1992,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 17.72, y: 19.43}
+    oldSize: {x: 10.04, y: 12.1}
     newSize: {x: 17.72, y: 19.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2103,7 +2103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.37, y: 6.54}
+    oldSize: {x: 5.24, y: 3.28}
     newSize: {x: 8.37, y: 6.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3050,7 +3050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: -0.0000076294}
+  m_AnchoredPosition: {x: 11.232, y: -0.0000076294}
   m_SizeDelta: {x: 878.2, y: 529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155105574
@@ -4035,7 +4035,7 @@ GameObject:
   - component: {fileID: 1536644872}
   m_Layer: 0
   m_Name: secound_floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
