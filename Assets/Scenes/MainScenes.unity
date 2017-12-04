@@ -1333,8 +1333,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 569332060}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 42.5, y: -0.39, z: 0}
-  m_LocalScale: {x: 0.38957, y: 0.16089, z: 0.95078}
+  m_LocalPosition: {x: 42.48, y: 1.56, z: 0}
+  m_LocalScale: {x: 0.5843561, y: 0.16089, z: 0.95078}
   m_Children: []
   m_Father: {fileID: 1104126968}
   m_RootOrder: 3
@@ -1351,7 +1351,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4.608782}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1362,7 +1362,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.2, y: 1.5824366}
+  m_Size: {x: 19.2, y: 1.62}
   m_EdgeRadius: 0
 --- !u!212 &569332063
 SpriteRenderer:
@@ -3559,7 +3559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 569332060}
   secondFloor: {fileID: 1536644870}
-  topLength: 0
+  topLength: 1
   downTime: 8
 --- !u!1 &1321831354
 GameObject:
@@ -4033,9 +4033,9 @@ GameObject:
   - component: {fileID: 1536644870}
   - component: {fileID: 1536644871}
   - component: {fileID: 1536644872}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: secound_floor
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
