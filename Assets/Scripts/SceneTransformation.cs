@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SceneTransformation : MonoBehaviour {
+using Cinemachine;
+public class SceneTransformation : MonoBehaviour
+{
 
     public Vector2 position;
     public float pausedTime;
+    public Collider2D cameraMoveRange;
 
     private Transform player;
 
-    void Start() {
+    void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
 
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player"))
+        {
 
             StartCoroutine(ChangeScene());
 
         }
     }
 
-    IEnumerator ChangeScene() {
+    IEnumerator ChangeScene()
+    {
         DataTransformer.enableInput = false;
 
         yield return new WaitForSeconds(pausedTime);
@@ -30,6 +36,16 @@ public class SceneTransformation : MonoBehaviour {
         DataTransformer.enableInput = true;
 
         player.position = new Vector3(position.x, position.y, player.position.z);
+
+
+        if (cameraMoveRange)
+        {
+            GameObject CameraManager = GameObject.Find("CameraManager");
+            Destroy(CameraManager.GetComponent<CinemachineConfiner>());
+            CameraManager.AddComponent<CinemachineConfiner>().m_BoundingShape2D = cameraMoveRange;
+            //CinemachineConfiner confiner = CameraManager.GetComponent<CinemachineConfiner>();
+            //confiner.m_BoundingShape2D = cameraMoveRange;
+        }
 
         DataTransformer.position = player.position;
 
