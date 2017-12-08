@@ -465,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 959539033}
+  m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!1 &181890019
@@ -970,6 +970,11 @@ Prefab:
       propertyPath: jumpSpeed
       value: 700
       objectReference: {fileID: 0}
+    - target: {fileID: 70794882462069044, guid: 840a3ea4e78e94b4ba8ca61956585a56,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 8579c364c8e5a6d4e9df61b1274d2a2f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840a3ea4e78e94b4ba8ca61956585a56, type: 2}
   m_IsPrefabParent: 0
@@ -1158,7 +1163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 20, y: -13.66684}
   pausedTime: 1
-  cameraMoveRange: {fileID: 502483443}
+  cameraMoveRange: {fileID: 0}
 --- !u!58 &392292380
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1320,7 +1325,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 502483442}
-  - component: {fileID: 502483443}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -1343,38 +1347,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &502483443
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502483441}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -28.77211, y: 5.1473336}
-      - {x: -28.85914, y: -5.3935614}
-      - {x: -11.647333, y: -5.388363}
-      - {x: -11.5085945, y: -17.830357}
-      - {x: 26.640305, y: -17.901093}
-      - {x: 26.582981, y: -7.3597813}
-      - {x: 1.6482849, y: -7.0617037}
-      - {x: 1.4694757, y: 5.320375}
 --- !u!1 &504113308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,7 +1783,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 2.1841466, y: 0.2229023}
+  m_Size: {x: 3.22, y: 0.2229023}
   m_EdgeRadius: 0
 --- !u!114 &648286459
 MonoBehaviour:
@@ -1821,7 +1793,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 648286456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d27a98d5af9174294fbfc2dbae2c34, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b42fb1a273f743439c7661207abc6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &701933187 stripped
@@ -2239,7 +2211,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2464,7 +2436,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 959539032}
-  - component: {fileID: 959539033}
   m_Layer: 8
   m_Name: Town
   m_TagString: Untagged
@@ -2488,35 +2459,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &959539033
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 959539031}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.19139862, y: 5.465953}
-      - {x: -9.563965, y: 5.285364}
-      - {x: -9.838684, y: -5.4663677}
-      - {x: 62.281723, y: -5.6577644}
-      - {x: 62.453598, y: 5.2853637}
 --- !u!1 &970387419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,7 +3007,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1137066341}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.56, y: -2.822997, z: -1}
+  m_LocalPosition: {x: 6.56, y: -2.74, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 2.8011065}
   m_Children:
   - {fileID: 648286457}
@@ -3383,7 +3325,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1197926984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1137066342}
@@ -4054,7 +3996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 65, y: -13.79668}
   pausedTime: 1
-  cameraMoveRange: {fileID: 959539033}
+  cameraMoveRange: {fileID: 0}
 --- !u!1 &1403846078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,7 +5011,6 @@ GameObject:
   - component: {fileID: 2085435779}
   - component: {fileID: 2085435778}
   - component: {fileID: 2085435777}
-  - component: {fileID: 2085435782}
   - component: {fileID: 2085435783}
   m_Layer: 0
   m_Name: MainCamera
@@ -5147,25 +5088,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2085435776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.425446, y: -12.693426, z: -40}
+  m_LocalPosition: {x: 68.9, y: -12.68, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2085435782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2085435776}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea93c38f76f97d4c9b46137dbb9f016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 2
-  moveSpeed: 5
 --- !u!114 &2085435783
 MonoBehaviour:
   m_ObjectHideFlags: 0

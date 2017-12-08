@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Death : MonoBehaviour {
 
+    private PlayerController playerCtrl;
+
+    private void Awake() {
+        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.CompareTag("Player")) {
-            Messenger.Broadcast("Death");
+        if (other.CompareTag("Player") && !playerCtrl.dead) {
+            playerCtrl.Death();
         }
     }
 

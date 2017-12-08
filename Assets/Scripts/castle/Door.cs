@@ -30,13 +30,13 @@ public class Door : MonoBehaviour {
 
         if (other.CompareTag("Player")) {
 
-            if (DataTransformer.yellow) {
+            //if (DataTransformer.yellow) {
 
-                StartCoroutine(ChangeScene());
+            //    StartCoroutine(ChangeScene());
 
-            }else {
-                PromptManager.Instance.PromptShow("前面好像有什么东西");
-            }
+            //}else {
+            //    PromptManager.Instance.PromptShow("前面好像有什么东西");
+            //}
         }
     }
 }

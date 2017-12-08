@@ -1,15 +1,4 @@
-﻿/*-------------------------------------------------------------------------------------------------------
-这里选用刚体实现角色的移动控制，有两个注意事项，第一个是创建好一个空GameObject时要先reset对象transform属性
-其次，角色图片作为一个SpriteRender组件在绑定到空GameObject对象上之前，也要先对transfrom属性进行reset
-上面两个操作的目的是保证SpriteRender处于空GameObject对象坐标系的原点
-改变GameObject对象的localScale.x的时候，GameObject对象的坐标系会相应改变
-此外，因为本脚本采用给角色加力的方式让角色移动，
-因此在创建的GameObject对象的RigidBody组件的Interpolate属性需要选择Interpolate（插值）
-让移动平滑一点
----------------------------------------------------------------------------------------------------------*/
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,25 +7,32 @@ public class PlayerController : MonoBehaviour {
     public bool facingRight = true;
     [HideInInspector]
     public bool jump = false;
+    [HideInInspector]
+    public bool dead = false;
+    [HideInInspector]
+    public bool Awakening = false;
+    [HideInInspector]
+    public bool push = false;
 
+
+    //主角的运动数值
     public float climbSpeed = 50.0f;
     public float moveSpeed = 100.0f;
     public float jumpSpeed = 250.0f;
-
     public float minSpeedY = -5.0f;
 
+    //打字机参数
     public GameObject talk;
     public GameObject talkPanel;
 
     private Transform groundCheck;
     private bool grounded = true;
     private Rigidbody2D body;
-
     private Animator animator;
-    private GameObject light;
+    private GameObject lightObject;
 
     //箱子实例
-    private Rigidbody2D box;
+    //private Rigidbody2D box;
 
     void Awake() {
         //获取刚体组件实例
@@ -44,19 +40,13 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         groundCheck = transform.Find("groundCheck");
-        light = GameObject.Find("light");
-
-
-        //监测死亡事件
-        Messenger.AddListener("Death", Death);
+        lightObject = GameObject.Find("light");
     }
 
-    void OnDestroy() {
-        Messenger.RemoveListener("Death", Death);
-    }
 
     //死亡函数
-    void Death() {
+    public void Death() {
+        dead = true;
 
         StartCoroutine(Restart());
 
@@ -76,30 +66,30 @@ public class PlayerController : MonoBehaviour {
 
         yield return new WaitForSeconds(1.0f);
         DataTransformer.enableInput = true;
+
+        dead = false;
     }
 
 
     void Start() {
         //默认没有开启能力,如果要开启能力，设置为true即可
-        light.SetActive(false);
+        
 
         //这句代码不能放在Awake里面
-        GameObject boxObject = GameObject.FindGameObjectWithTag("box");
-        if (boxObject) {
-            box = boxObject.GetComponent<Rigidbody2D>();
-        } else {
-            box = null;
-        }
+        //GameObject boxObject = GameObject.FindGameObjectWithTag("box");
+        //if (boxObject) {
+        //    box = boxObject.GetComponent<Rigidbody2D>();
+        //} else {
+        //    box = null;
+        //}
     }
 
-    IEnumerator continueInput() {
-        yield return new WaitForSeconds(1.0f);
 
-        DataTransformer.enableInput = true;
-    }
 
     void Update()
     {
+        lightObject.SetActive(Awakening);
+
         //检测是否落地
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         DataTransformer.grounded = grounded;
@@ -116,10 +106,7 @@ public class PlayerController : MonoBehaviour {
                 this.body.gravityScale = 2;
                 
                 DataTransformer.climb = false;
-
-
-                //动画结束会有延时，所以。。。
-                StartCoroutine(continueInput());
+                DataTransformer.enableInput = true;
             }
 
             
@@ -133,13 +120,13 @@ public class PlayerController : MonoBehaviour {
         //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
 
-            //用于测试，暂时按M键获得能力
-            if (Input.GetKey(KeyCode.M)) {
-                DataTransformer.yellow = true;
-            }
+            ////用于测试，暂时按M键获得能力
+            //if (Input.GetKey(KeyCode.M)) {
+            //    DataTransformer.yellow = true;
+            //}
 
 
-            light.SetActive(DataTransformer.yellow);
+            //lightObject.SetActive(DataTransformer.yellow);
 
             //对话框
             if (Input.GetKey(KeyCode.T)) {
@@ -174,23 +161,25 @@ public class PlayerController : MonoBehaviour {
         body.velocity = new Vector2(velocityX, velocityY);
         /*---------------------------------------------------------------------------------------------------*/
 
+        //播放行走动画
+        animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
 
-        // h>0说明角色正要朝右走，facingRight==false说明角色当前朝向为左，需要转向
+        // 需要转向
         if (h > 0 && !facingRight)
             Flip();
-        // h<0说明角色正要朝左走，facingRight==true说明角色当前朝向为右，需要转向
         else if (h < 0 && facingRight)
             Flip();
 
-        //当角色正在push的时候，不播放行走动画
-        if (!DataTransformer.push) {
-            animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
-        } else {
-            animator.SetFloat("velocityX", 0);
-        }
+
+        ////当角色正在push的时候，不播放行走动画
+        //if (!DataTransformer.push) {
+        //    animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
+        //} else {
+        //    animator.SetFloat("velocityX", 0);
+        //}
 
 
-        animator.SetBool("push", DataTransformer.push && (h * DataTransformer.deltaLength < 0));
+        //animator.SetBool("push", DataTransformer.push && (h * DataTransformer.deltaLength < 0));
 
         // 假如当前正处于跳跃状态下
         if (jump)
