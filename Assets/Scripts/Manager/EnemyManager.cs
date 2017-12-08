@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 scale = transform.localScale; //设置scale变量
         distance = Princess.transform.position.x - transform.position.x;
         if (Mathf.Abs(distance) < AlertDistance)
         {
@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour {
             {
                 PatrolSpeed = -PatrolSpeed;
                 time = PatrolTime;
+                scale.x = -scale.x;
             }
             time -= Time.deltaTime;
             transform.Translate(-PatrolSpeed * Time.deltaTime, 0, 0);
@@ -60,5 +61,6 @@ public class EnemyManager : MonoBehaviour {
             }
 
         }
+        transform.localScale = scale; //重新赋值
     }
 }

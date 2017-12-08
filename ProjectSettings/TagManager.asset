@@ -10,6 +10,9 @@ TagManager:
   - box
   - Enemy
   - flag
+  - Ground
+  - RiverBottom
+  - road2
   layers:
   - Default
   - TransparentFX
@@ -24,7 +27,7 @@ TagManager:
   - Gray
   - Player
   - Ground
-  - 
+  - Climb
   - 
   - 
   - 

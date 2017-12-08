@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour {
     public bool Awakening = false;
     [HideInInspector]
     public bool push = false;
-
+    [HideInInspector]
+    public bool grounded = true;
+    [HideInInspector]
+    public bool enableInput = true;
 
     //主角的运动数值
-    public float climbSpeed = 50.0f;
     public float moveSpeed = 100.0f;
     public float jumpSpeed = 250.0f;
     public float minSpeedY = -5.0f;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject talkPanel;
 
     private Transform groundCheck;
-    private bool grounded = true;
+    
     private Rigidbody2D body;
     private Animator animator;
     private GameObject lightObject;
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour {
     //死亡函数
     public void Death() {
         dead = true;
+        /*-----------------------------------*/
+        /*--------这里播放死亡的音效---------*/
 
         StartCoroutine(Restart());
 
@@ -56,7 +60,6 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("dead", true);
         DataTransformer.enableInput = false;
 
-        //EffectManager.Instance.EffectShow();
 
         yield return new WaitForSeconds(2.0f);
 
@@ -71,54 +74,21 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    void Start() {
-        //默认没有开启能力,如果要开启能力，设置为true即可
-        
-
-        //这句代码不能放在Awake里面
-        //GameObject boxObject = GameObject.FindGameObjectWithTag("box");
-        //if (boxObject) {
-        //    box = boxObject.GetComponent<Rigidbody2D>();
-        //} else {
-        //    box = null;
-        //}
-    }
-
-
 
     void Update()
     {
+        //检测能力是否觉醒
         lightObject.SetActive(Awakening);
 
         //检测是否落地
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        DataTransformer.grounded = grounded;
-
-        
-        if (DataTransformer.climb) {
-           //禁用输入
-            DataTransformer.enableInput = false;
-            //设置角色重力为0
-            this.body.gravityScale = 0;
-
-            //-13.6为测试值
-            if (this.transform.position.y <= -13.6 && body.velocity.y < 0) {
-                this.body.gravityScale = 2;
-                
-                DataTransformer.climb = false;
-                DataTransformer.enableInput = true;
-            }
-
-            
-        } else {
-            //播放站立动画
-            animator.SetBool("grounded", grounded);
-        }
-
-        animator.SetBool("climb", DataTransformer.climb);
+        animator.SetBool("grounded", grounded);
 
         //用于实现禁用输入功能
-        if (DataTransformer.enableInput) {
+        if (enableInput) {
+            this.body.gravityScale = 2;
+
+            
 
             ////用于测试，暂时按M键获得能力
             //if (Input.GetKey(KeyCode.M)) {
@@ -137,6 +107,8 @@ public class PlayerController : MonoBehaviour {
             // 只有当角色落地的时候才能跳跃
             if (Input.GetButtonDown("Jump") && grounded)
                 jump = true;
+        }else {
+            this.body.gravityScale = 0;
         }
     }
 
@@ -145,12 +117,8 @@ public class PlayerController : MonoBehaviour {
     {
         // 获取输入
         float h = 0.0f;
-        if (DataTransformer.enableInput) {
+        if (enableInput) {
             h = Input.GetAxis("Horizontal");
-        }else {
-            if (DataTransformer.climb) {
-                body.velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime * Input.GetAxis("Vertical"));
-            }
         }
 
         /*--------------------------------这部分是采用恒定速度的代码--------------------------------------------*/
@@ -170,30 +138,25 @@ public class PlayerController : MonoBehaviour {
         else if (h < 0 && facingRight)
             Flip();
 
+        Jump();
+        
+    }
 
-        ////当角色正在push的时候，不播放行走动画
-        //if (!DataTransformer.push) {
-        //    animator.SetFloat("velocityX", Mathf.Abs(body.velocity.x));
-        //} else {
-        //    animator.SetFloat("velocityX", 0);
-        //}
-
-
-        //animator.SetBool("push", DataTransformer.push && (h * DataTransformer.deltaLength < 0));
-
+    void Jump() {
         // 假如当前正处于跳跃状态下
-        if (jump)
-        {
+        if (jump) {
             //所以直接给角色设置向上的速度
             body.velocity = new Vector2(0, jumpSpeed * Time.deltaTime);
 
             // 避免多次跳跃
             jump = false;
+
+            /*-----------------------------------*/
+            /*---------这里播放跳跃音效----------*/
         }
     }
 
-
-    void Flip()
+    public void Flip()
     {
         // 改变朝向
         facingRight = !facingRight;
