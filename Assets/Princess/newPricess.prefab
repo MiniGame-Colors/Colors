@@ -245,8 +245,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4432426448836250}
+  - component: {fileID: 114390398443149592}
+  - component: {fileID: 50965852529522770}
+  - component: {fileID: 70751572931624430}
+  - component: {fileID: 114710723477233238}
   m_Layer: 0
-  m_Name: Pricess
+  m_Name: newPricess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,7 +438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4633252078503474}
   - component: {fileID: 212996471461370924}
-  - component: {fileID: 70796878904320046}
   m_Layer: 0
   m_Name: PrinessObj
   m_TagString: Untagged
@@ -807,8 +810,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1440041254634706}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6428547, y: 0.58095586, z: 9.011719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4238664409350568}
@@ -945,20 +948,40 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!70 &70796878904320046
+--- !u!50 &50965852529522770
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444733300881592}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &70751572931624430
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835174473739202}
+  m_GameObject: {fileID: 1444733300881592}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1883463, y: -2.7566996}
-  m_Size: {x: 5.26002, y: 11.184357}
+  m_Offset: {x: 0.02737379, y: -0.8584895}
+  m_Size: {x: 1.592732, y: 3.5158339}
   m_Direction: 0
 --- !u!81 &81767845549825512
 AudioListener:
@@ -1126,6 +1149,29 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114390398443149592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444733300881592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451400c4a97304746a840547049020fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.01
+--- !u!114 &114710723477233238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1444733300881592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e2ff83416d92449a123e4c1f1fcf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124347003620432878
 Behaviour:
   m_ObjectHideFlags: 1
