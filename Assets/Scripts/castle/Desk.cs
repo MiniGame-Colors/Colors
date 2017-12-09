@@ -10,8 +10,11 @@ public class Desk : MonoBehaviour {
     public float pausedTime = 1.0f;
     public new AudioClip audio;
 
+    private PlayerController playerCtrl;
+
     void Start () {
 
+        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
         shatteredBottole.gameObject.SetActive(false);
 
@@ -40,7 +43,7 @@ public class Desk : MonoBehaviour {
         EffectManager.Instance.EffectShow2();
 
         //禁止输入
-        DataTransformer.enableInput = false;
+        playerCtrl.enableInput = false;
 
         yield return new WaitForSeconds(pausedTime);
 
@@ -59,6 +62,6 @@ public class Desk : MonoBehaviour {
 
 
         //恢复输入
-        DataTransformer.enableInput = true;
+        playerCtrl.enableInput = true;
     }
 }

@@ -32,10 +32,9 @@ public class Climb : MonoBehaviour {
         playerCtrl = player.GetComponent<PlayerController>();
         animator = player.GetComponent<Animator>();
         frontCheck = player.transform.Find("frontCheck");
-        Debug.Log(frontCheck);
     }
 
-    private void Update2() {
+    private void Update() {
         //检测climb的值
         climb = Physics2D.Linecast(player.transform.position, frontCheck.position, 1 << LayerMask.NameToLayer("Climb"));
 

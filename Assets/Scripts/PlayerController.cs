@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator Restart() {
         animator.SetBool("dead", true);
-        DataTransformer.enableInput = false;
+        enableInput = false;
 
 
         yield return new WaitForSeconds(2.0f);
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("dead", false);
 
         yield return new WaitForSeconds(1.0f);
-        DataTransformer.enableInput = true;
+        enableInput = true;
 
         dead = false;
     }
