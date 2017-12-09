@@ -88,8 +88,6 @@ public class PlayerController : MonoBehaviour {
         if (enableInput) {
             this.body.gravityScale = 2;
 
-            
-
             ////用于测试，暂时按M键获得能力
             //if (Input.GetKey(KeyCode.M)) {
             //    DataTransformer.yellow = true;

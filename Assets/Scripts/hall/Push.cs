@@ -18,10 +18,9 @@ public class Push : MonoBehaviour {
         animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         frontCheck = GameObject.FindGameObjectWithTag("Player").transform.Find("frontCheck");
-
     }
 
-    void Update() {
+    void Update2() {
 
         Collider2D[] cols = Physics2D.OverlapPointAll(frontCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 

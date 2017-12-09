@@ -8,8 +8,9 @@ public class Desk : MonoBehaviour {
     private float detectedLength = 5.0f;
 
     public float pausedTime = 1.0f;
+    public new AudioClip audio;
 
-	void Start () {
+    void Start () {
 
         Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
         shatteredBottole.gameObject.SetActive(false);
@@ -48,12 +49,14 @@ public class Desk : MonoBehaviour {
         //PromptManager.Instance.PromptShow("镜子碎了");
 
 
+        MusicManager.instance.RandomPlay(audio);
         //显示破碎的瓶子图片
         Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
         shatteredBottole.gameObject.SetActive(true);
         //隐藏正常的瓶子
         Transform bottole = (this.gameObject.transform.GetChild(1)) as Transform;
         bottole.gameObject.SetActive(false);
+
 
         //恢复输入
         DataTransformer.enableInput = true;
