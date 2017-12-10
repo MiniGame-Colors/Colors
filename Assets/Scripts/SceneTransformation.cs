@@ -5,7 +5,7 @@ using Cinemachine;
 public class SceneTransformation : MonoBehaviour
 {
 
-    public Vector2 position;
+    public Transform targetPlace;
     public float pausedTime;
     public Collider2D cameraMoveRange;
 
@@ -35,7 +35,7 @@ public class SceneTransformation : MonoBehaviour
 
         DataTransformer.enableInput = true;
 
-        player.position = new Vector3(position.x, position.y, player.position.z);
+        player.position = new Vector3(targetPlace.position.x, targetPlace.position.y, player.position.z);
 
 
         if (cameraMoveRange)
@@ -43,11 +43,8 @@ public class SceneTransformation : MonoBehaviour
             GameObject CameraManager = GameObject.Find("CameraManager");
             Destroy(CameraManager.GetComponent<CinemachineConfiner>());
             CameraManager.AddComponent<CinemachineConfiner>().m_BoundingShape2D = cameraMoveRange;
-            //CinemachineConfiner confiner = CameraManager.GetComponent<CinemachineConfiner>();
-            //confiner.m_BoundingShape2D = cameraMoveRange;
         }
 
         DataTransformer.position = player.position;
-
     }
 }
