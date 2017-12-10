@@ -7,7 +7,7 @@ using UnityEngine;
 
 static public class DataTransformer {
     //主角是否觉醒黄色的能力
-    //public static bool yellow = false;
+    public static bool yellow = false;
     //控制用户输入
     public static bool enableInput = true;
     //检测用户此时是否着地
