@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4822873032d15854bb29ed87ef630f62
-timeCreated: 1512930021
+guid: 8c102d13b91756843a5356747e50b766
+timeCreated: 1512931699
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\u6276\u624B\uFF08\u524D\uFF09_0"
+    21300000: "\u95E8_0"
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -76,13 +76,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u6276\u624B\uFF08\u524D\uFF09_0"
+      name: "\u95E8_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 145
-        width: 693
-        height: 666
+        x: 549
+        y: 405
+        width: 770
+        height: 1195
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
