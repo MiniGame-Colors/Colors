@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class Paint : MonoBehaviour {
 
+    private PlayerController playerCtrl;
+    private GameObject blurry;
+
+    private bool picked = false;
 	
-	void Start () {
+	void Awake() {
+        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
-        //if (DataTransformer.yellow) {
-        //    this.transform.GetChild(0).gameObject.SetActive(false);
-        //} else {
-        //    this.transform.GetChild(1).gameObject.SetActive(false);
-        //}
-
-	}
+        blurry = transform.Find("Blurry").gameObject;
+    }
 
 
     void Update() {
-        //if (DataTransformer.yellow) {
-        //    this.transform.GetChild(0).gameObject.SetActive(false);
-        //} else {
-        //    this.transform.GetChild(1).gameObject.SetActive(false);
-        //}
+        if (blurry.activeSelf) {
+            if (playerCtrl.Awakening) {
+                blurry.SetActive(false);
+
+                GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player")) {
+
+            //删除钥匙图片
+
+            picked = true;
+            playerCtrl.keyOfHall = true;
+        }
     }
 }
