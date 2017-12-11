@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour {
     public bool grounded = true;
     [HideInInspector]
     public bool enableInput = true;
+    [HideInInspector]
+    public Vector3 position;
+    [HideInInspector]
+    public bool keyOfHall = false;
+
+
 
     //主角的运动数值
     public float moveSpeed = 100.0f;
@@ -42,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         groundCheck = transform.Find("groundCheck");
-        lightObject = GameObject.Find("light");
+        lightObject = transform.Find("light").gameObject;
     }
 
 
@@ -64,7 +70,9 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(2.0f);
 
         //让角色回到存档的位置
-        this.transform.position = DataTransformer.position;
+        this.transform.position = position;
+
+
         animator.SetBool("dead", false);
 
         yield return new WaitForSeconds(1.0f);
@@ -87,15 +95,6 @@ public class PlayerController : MonoBehaviour {
         //用于实现禁用输入功能
         if (enableInput) {
             this.body.gravityScale = 2;
-
-            //用于测试，暂时按M键获得能力
-            if (Input.GetKey(KeyCode.M))
-            {
-                DataTransformer.yellow = true;
-            }
-
-
-            lightObject.SetActive(DataTransformer.yellow);
 
             //对话框
             if (Input.GetKey(KeyCode.T)) {
