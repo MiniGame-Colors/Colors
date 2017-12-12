@@ -29,9 +29,6 @@ public class Statue : MonoBehaviour {
             float alpha = temp / length;
 
             sprite.color = new Vector4(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
-
-            //SpriteRenderer[] sprite = this.gameObject.GetComponentsInChildren<SpriteRenderer>(true);
-            //sprite[0].color = new Vector4(sprite[0].color.r, sprite[0].color.g, sprite[0].color.b, alpha);
         }
 
     }

@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class Desk : MonoBehaviour {
 
-	private bool hasStarted;
-    private float detectedLength = 5.0f;
-
     public float pausedTime = 1.0f;
     public new AudioClip audio;
 
-    private PlayerController playerCtrl;
+    private bool hasStarted;
+    private float detectedLength = 5.0f;
+    private GameObject withBottole;
+    private GameObject withoutBottole;
+
+    private void Awake() {
+        withBottole = transform.Find("WithBottle").gameObject;
+        withoutBottole = transform.Find("WithoutBottle").gameObject;
+    }
 
     void Start () {
-
-        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
-        shatteredBottole.gameObject.SetActive(false);
+        withoutBottole.SetActive(false);
+        withBottole.SetActive(true);
 
         hasStarted = false;
+    }
+
+    private void Update() {
+        if (hasStarted) {
+            if(DataTransformer.dead && DataTransformer.resetDesk) {
+                StartCoroutine(Reset());
+            }
+
+            //被存档，不需要再被重置
+            if (DataTransformer.changeScene && DataTransformer.resetDesk) {
+                DataTransformer.resetDesk = false;
+            }
+        } 
     }
 
 
@@ -35,6 +51,15 @@ public class Desk : MonoBehaviour {
         
     }
 
+    //重置梳妆台
+    private IEnumerator Reset() {
+        yield return new WaitForSeconds(DataTransformer.restartTime);
+
+        hasStarted = false;
+        withoutBottole.SetActive(false);
+        withBottole.SetActive(true);
+    }
+
     private IEnumerator PauseGame() {
         //更新状态
         hasStarted = true;
@@ -43,7 +68,7 @@ public class Desk : MonoBehaviour {
         EffectManager.Instance.EffectShow2();
 
         //禁止输入
-        playerCtrl.enableInput = false;
+        DataTransformer.enableInput = false;
 
         yield return new WaitForSeconds(pausedTime);
 
@@ -62,6 +87,6 @@ public class Desk : MonoBehaviour {
 
 
         //恢复输入
-        playerCtrl.enableInput = true;
+        DataTransformer.enableInput = true;
     }
 }

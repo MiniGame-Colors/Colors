@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stairs : MonoBehaviour {
-
-    private PlayerController playerCtrl;
+    
     private GameObject stairs;
     private SceneTransformation scene;
 
     void Awake () {
-        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         stairs = transform.Find("Stairs").gameObject;
 	}
 	
 
 	void Update () {
-        if (playerCtrl.Awakening && !stairs.activeSelf) {
+        if (DataTransformer.Awakening && !stairs.activeSelf) {
             stairs.SetActive(true);
 
             scene = stairs.GetComponent<SceneTransformation>();

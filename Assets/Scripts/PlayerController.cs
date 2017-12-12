@@ -8,19 +8,8 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool jump = false;
     [HideInInspector]
-    public bool dead = false;
-    [HideInInspector]
-    public bool Awakening = false;
-    [HideInInspector]
-    public bool push = false;
-    [HideInInspector]
     public bool grounded = true;
-    [HideInInspector]
-    public bool enableInput = true;
-    [HideInInspector]
-    public Vector3 position;
-    [HideInInspector]
-    public bool keyOfHall = false;
+    
 
 
 
@@ -49,12 +38,15 @@ public class PlayerController : MonoBehaviour {
 
         groundCheck = transform.Find("groundCheck");
         lightObject = transform.Find("light").gameObject;
+
+        //初始化存档位置
+        DataTransformer.position = transform.position;
     }
 
 
     //死亡函数
     public void Death() {
-        dead = true;
+        
         /*-----------------------------------*/
         /*--------这里播放死亡的音效---------*/
 
@@ -63,22 +55,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator Restart() {
+        DataTransformer.dead = true;
         animator.SetBool("dead", true);
-        enableInput = false;
+        DataTransformer.enableInput = false;
 
-
-        yield return new WaitForSeconds(2.0f);
-
-        //让角色回到存档的位置
-        this.transform.position = position;
-
+        yield return new WaitForSeconds(DataTransformer.restartTime);
 
         animator.SetBool("dead", false);
+        DataTransformer.enableInput = true;
+        DataTransformer.dead = false;
 
-        yield return new WaitForSeconds(1.0f);
-        enableInput = true;
-
-        dead = false;
+        //让角色回到存档的位置
+        this.transform.position = DataTransformer.position;
     }
 
 
@@ -86,14 +74,14 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         //检测能力是否觉醒
-        lightObject.SetActive(Awakening);
+        lightObject.SetActive(DataTransformer.Awakening);
 
         //检测是否落地
         grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         animator.SetBool("grounded", grounded);
 
         //用于实现禁用输入功能
-        if (enableInput) {
+        if (DataTransformer.enableInput) {
             this.body.gravityScale = 2;
 
             //对话框
@@ -115,7 +103,7 @@ public class PlayerController : MonoBehaviour {
     {
         // 获取输入
         float h = 0.0f;
-        if (enableInput) {
+        if (DataTransformer.enableInput) {
             h = Input.GetAxis("Horizontal");
         }
 

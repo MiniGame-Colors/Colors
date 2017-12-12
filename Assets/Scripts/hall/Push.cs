@@ -6,17 +6,13 @@ using UnityEngine;
 
 public class Push : MonoBehaviour {
     //保存引用
-    //private Rigidbody2D body;
     private Animator animator;
-    //private PlayerController playerCtrl;
     private Transform frontCheck;
 
     private void Awake() {
         //获取必要的引用
-        //body = this.transform.GetComponentInParent<Rigidbody2D>();
 
         animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-        //playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         frontCheck = GameObject.FindGameObjectWithTag("Player").transform.Find("frontCheck");
     }
 

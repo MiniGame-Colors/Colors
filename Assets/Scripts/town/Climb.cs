@@ -60,7 +60,7 @@ public class Climb : MonoBehaviour {
                 }
 
                 //改变角色的运动方式
-                playerCtrl.enableInput = false;
+                DataTransformer.enableInput = false;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime * v);
                 player.transform.position = new Vector2(player.transform.position.x, Mathf.Clamp(player.transform.position.y, minXAndY.y, maxXAndY.y));
                 
@@ -70,7 +70,7 @@ public class Climb : MonoBehaviour {
 
             //退出攀爬状态
             if (Input.GetButtonDown("Jump")) {
-                playerCtrl.enableInput = true;
+                DataTransformer.enableInput = true;
 
                 hasClimbed = false;
 
