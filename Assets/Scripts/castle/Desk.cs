@@ -7,7 +7,7 @@ public class Desk : MonoBehaviour {
     public float pausedTime = 1.0f;
     public new AudioClip audio;
 
-    private bool hasStarted;
+    private bool hasStarted = false;
     private float detectedLength = 5.0f;
     private GameObject withBottole;
     private GameObject withoutBottole;
@@ -20,21 +20,6 @@ public class Desk : MonoBehaviour {
     void Start () {
         withoutBottole.SetActive(false);
         withBottole.SetActive(true);
-
-        hasStarted = false;
-    }
-
-    private void Update() {
-        if (hasStarted) {
-            if(DataTransformer.dead && DataTransformer.resetDesk) {
-                StartCoroutine(Reset());
-            }
-
-            //被存档，不需要再被重置
-            if (DataTransformer.changeScene && DataTransformer.resetDesk) {
-                DataTransformer.resetDesk = false;
-            }
-        } 
     }
 
 
@@ -48,16 +33,6 @@ public class Desk : MonoBehaviour {
 
             }
         }
-        
-    }
-
-    //重置梳妆台
-    private IEnumerator Reset() {
-        yield return new WaitForSeconds(DataTransformer.restartTime);
-
-        hasStarted = false;
-        withoutBottole.SetActive(false);
-        withBottole.SetActive(true);
     }
 
     private IEnumerator PauseGame() {

@@ -20,10 +20,8 @@ public static class DataTransformer {
     //当前是否处于场景转换状态
     public static bool changeScene = false;
 
-    //检测是否需要重置桌子
-    public static bool resetDesk = true;
-    //检测是否需要重置沙发
-    public static bool resetSofa = true;
+    //检测桌子是否被触发过
+    //public static bool deskTrigger = false;
 
 
 
