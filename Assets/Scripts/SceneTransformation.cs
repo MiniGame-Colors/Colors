@@ -10,11 +10,14 @@ public class SceneTransformation : MonoBehaviour
     public Collider2D cameraMoveRange;
 
     private Transform player;
+    private SceneController sceneCtrl;
     
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
     }
 
 
@@ -41,6 +44,7 @@ public class SceneTransformation : MonoBehaviour
             CameraManager.AddComponent<CinemachineConfiner>().m_BoundingShape2D = cameraMoveRange;
         }
 
+        sceneCtrl.Save();
         DataTransformer.position = player.position;
     }
 }

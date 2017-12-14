@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private GameObject lightObject;
 
-    //箱子实例
-    //private Rigidbody2D box;
+    //场景控制器实例
+    private SceneController sceneCtrl;
 
     void Awake() {
         //获取刚体组件实例
@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 
         groundCheck = transform.Find("groundCheck");
         lightObject = transform.Find("light").gameObject;
+
+        sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
 
         //初始化存档位置
         DataTransformer.position = transform.position;
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 
         StartCoroutine(Restart());
 
+        
     }
 
     IEnumerator Restart() {
@@ -65,6 +68,8 @@ public class PlayerController : MonoBehaviour {
         DataTransformer.enableInput = true;
         DataTransformer.dead = false;
 
+        //重置场景
+        sceneCtrl.Reset();
         //让角色回到存档的位置
         this.transform.position = DataTransformer.position;
     }
