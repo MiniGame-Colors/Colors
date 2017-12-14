@@ -9,9 +9,10 @@ public class PlayerController : MonoBehaviour {
     public bool jump = false;
     [HideInInspector]
     public bool grounded = true;
-    
 
 
+    public AudioClip[] jumpAudio;
+    public AudioClip[] deathAudio;
 
     //主角的运动数值
     public float moveSpeed = 100.0f;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour {
         lightObject = transform.Find("light").gameObject;
 
         sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
-
+        sceneCtrl.Save();
         //初始化存档位置
         DataTransformer.position = transform.position;
     }

@@ -1052,14 +1052,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 88404918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1508792292}
   - {fileID: 865331733}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 993331909}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &88404920
 PolygonCollider2D:
@@ -1125,6 +1125,8 @@ MonoBehaviour:
   facingRight: 1
   jump: 0
   grounded: 1
+  jumpAudio: []
+  deathAudio: []
   moveSpeed: 200
   jumpSpeed: 500
   minSpeedY: -15
@@ -4374,14 +4376,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502483441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1941429613}
   - {fileID: 642596189}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 993331909}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &502483443
 PolygonCollider2D:
@@ -8517,8 +8519,8 @@ Transform:
   - {fileID: 223956835}
   - {fileID: 1104126968}
   - {fileID: 2047238285}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 993331909}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &959539033
 PolygonCollider2D:
@@ -8813,6 +8815,38 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &993331908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 993331909}
+  m_Layer: 11
+  m_Name: Scene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993331909
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993331908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 502483442}
+  - {fileID: 959539032}
+  - {fileID: 2067252694}
+  - {fileID: 88404919}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993990511 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1513432620235156, guid: f8503b2c75a07cd44906296caad6c2fb,
@@ -12211,7 +12245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226021142
 GameObject:
@@ -18292,7 +18326,7 @@ Transform:
   - {fileID: 2034456246}
   - {fileID: 1872888171}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1895264378 stripped
 GameObject:
@@ -18307,8 +18341,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1900280387}
-  - component: {fileID: 1900280386}
   - component: {fileID: 1900280388}
+  - component: {fileID: 1900280386}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -18328,7 +18362,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0}
+  m_Offset: {x: -1.23, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18339,7 +18373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.12, y: 1.67}
+  m_Size: {x: 8.41, y: 11.24}
   m_EdgeRadius: 0
 --- !u!4 &1900280387
 Transform:
@@ -18369,6 +18403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausedTime: 1
   audio: {fileID: 8300000, guid: d39f60970ff53504cb495dbbb95ef5d1, type: 3}
+  detectedLength: 5
 --- !u!1 &1912083569
 GameObject:
   m_ObjectHideFlags: 0
@@ -20073,8 +20108,8 @@ Transform:
   m_Children:
   - {fileID: 1212296086}
   - {fileID: 1547158386}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 993331909}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2067252695
 BoxCollider2D:

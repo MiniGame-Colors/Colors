@@ -8,21 +8,23 @@ public class Desk : MonoBehaviour {
     public new AudioClip audio;
 
     private bool hasStarted = false;
-    private float detectedLength = 5.0f;
+    public float detectedLength = 5.0f;
+
     private GameObject withBottole;
     private GameObject withoutBottole;
 
     private void Awake() {
         withBottole = transform.Find("WithBottle").gameObject;
         withoutBottole = transform.Find("WithoutBottle").gameObject;
+
     }
 
-    void Start () {
+    void Start() {
         withoutBottole.SetActive(false);
-        withBottole.SetActive(true);
     }
 
 
+    //当角色进入时触发
     void OnTriggerStay2D(Collider2D other){
         if (other.CompareTag("Player")){
             float length = Mathf.Abs(other.gameObject.transform.position.x - this.transform.position.x);
@@ -47,19 +49,16 @@ public class Desk : MonoBehaviour {
 
         yield return new WaitForSeconds(pausedTime);
 
-
-        //显示提示框
-        //PromptManager.Instance.PromptShow("镜子碎了");
-
-
+        //播放音效
         MusicManager.instance.RandomPlay(audio);
-        //显示破碎的瓶子图片
-        Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
-        shatteredBottole.gameObject.SetActive(true);
-        //隐藏正常的瓶子
-        Transform bottole = (this.gameObject.transform.GetChild(1)) as Transform;
-        bottole.gameObject.SetActive(false);
 
+        //显示破碎的瓶子图片
+        withoutBottole.SetActive(true);
+
+        //隐藏正常的瓶子
+        withBottole.SetActive(false);
+
+        GetComponent<Desk>().enabled = false;
 
         //恢复输入
         DataTransformer.enableInput = true;

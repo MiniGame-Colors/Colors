@@ -7,18 +7,11 @@ public class SceneController : MonoBehaviour {
     private GameObject scene;
     private GameObject sceneClone;
 
-    void Start() {
-        scene = GameObject.Find("Castle");
-
-        sceneClone = Instantiate(scene);
-        sceneClone.SetActive(false);
-    }
-
     public void Reset() {
         Destroy(scene);
 
         sceneClone.SetActive(true);
-        sceneClone.name = "Castle";
+        sceneClone.name = "Scene";
         scene = sceneClone;
         sceneClone = Instantiate(scene);
         sceneClone.SetActive(false);
@@ -27,9 +20,13 @@ public class SceneController : MonoBehaviour {
 
     public void Save() {
 
-        Destroy(sceneClone);
+        if (sceneClone) {
+            Destroy(sceneClone);
+        }
 
-        sceneClone = Instantiate(GameObject.Find("Castle"));
+        scene = GameObject.Find("Scene");
+
+        sceneClone = Instantiate(scene);
         sceneClone.SetActive(false);
     }
 }
