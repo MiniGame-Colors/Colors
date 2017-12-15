@@ -58,7 +58,10 @@ public class Desk : MonoBehaviour {
         //隐藏正常的瓶子
         withBottole.SetActive(false);
 
+
+        //禁用触发脚本和Collider
         GetComponent<Desk>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         //恢复输入
         DataTransformer.enableInput = true;
