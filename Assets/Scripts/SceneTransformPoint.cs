@@ -15,8 +15,10 @@ public class SceneTransformPoint : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-
-        StartCoroutine(scene.ChangeScene());
-
+        // why don't add compare tag ?
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(scene.ChangeScene());
+        }
     }
 }

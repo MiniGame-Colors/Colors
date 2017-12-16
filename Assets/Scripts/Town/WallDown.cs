@@ -22,7 +22,8 @@ public class WallDown : MonoBehaviour
     void Update()
     {
         float wallTop = wall.transform.position.y + wall.GetComponent<BoxCollider2D>().size.x / 2 * wall.transform.localScale.x;
-        if (canDown && wallTop - secondFloor.position.y > topLength)
+        bool isKeyDown = Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z);
+        if ( isKeyDown && canDown && wallTop - secondFloor.position.y > topLength)
         {
             wall.transform.Translate(-(initialWallTop - secondFloor.position.y) / (60 * downTime), 0, 0);
         }

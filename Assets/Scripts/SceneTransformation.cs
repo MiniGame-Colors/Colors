@@ -16,7 +16,6 @@ public class SceneTransformation : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
     }
 
