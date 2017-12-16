@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 
 public class Door : MonoBehaviour {
-
-    //public float pausedTime;
-    //public Vector2 position;
     public bool key;
 
     private Transform player;
