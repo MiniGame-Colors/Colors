@@ -10,34 +10,29 @@ public class SceneTransformation : MonoBehaviour
     public Collider2D cameraMoveRange;
 
     private Transform player;
-    private PlayerController playerCtrl;
+    private SceneController sceneCtrl;
     
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        playerCtrl = player.gameObject.GetComponent<PlayerController>();
+        sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
     }
 
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
 
-    //    if (other.CompareTag("Player"))
-    //    {
-
-    //        StartCoroutine(ChangeScene());
-
-    //    }
-    //}
 
     public IEnumerator ChangeScene()
     {
-        playerCtrl.enableInput = false;
+        DataTransformer.enableInput = false;
+        //进入转换场景状态
+        DataTransformer.changeScene = true;
 
         yield return new WaitForSeconds(pausedTime);
 
-        playerCtrl.enableInput = true;
+        DataTransformer.enableInput = true;
+        //退出场景转换状态
+        DataTransformer.changeScene = false;
 
         player.position = new Vector3(targetPlace.position.x, targetPlace.position.y, player.position.z);
 
@@ -49,6 +44,7 @@ public class SceneTransformation : MonoBehaviour
             CameraManager.AddComponent<CinemachineConfiner>().m_BoundingShape2D = cameraMoveRange;
         }
 
-        playerCtrl.position = player.position;
+        sceneCtrl.Save();
+        DataTransformer.position = player.position;
     }
 }

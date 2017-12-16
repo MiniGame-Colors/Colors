@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Desk : MonoBehaviour {
 
-	private bool hasStarted;
-    private float detectedLength = 5.0f;
-
     public float pausedTime = 1.0f;
     public new AudioClip audio;
 
-    private PlayerController playerCtrl;
+    private bool hasStarted = false;
+    public float detectedLength = 5.0f;
 
-    void Start () {
+    private GameObject withBottole;
+    private GameObject withoutBottole;
 
-        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
-        shatteredBottole.gameObject.SetActive(false);
+    private void Awake() {
+        withBottole = transform.Find("WithBottle").gameObject;
+        withoutBottole = transform.Find("WithoutBottle").gameObject;
 
-        hasStarted = false;
+    }
+
+    void Start() {
+        withoutBottole.SetActive(false);
     }
 
 
+    //当角色进入时触发
     void OnTriggerStay2D(Collider2D other){
         if (other.CompareTag("Player")){
             float length = Mathf.Abs(other.gameObject.transform.position.x - this.transform.position.x);
@@ -32,7 +35,6 @@ public class Desk : MonoBehaviour {
 
             }
         }
-        
     }
 
     private IEnumerator PauseGame() {
@@ -43,25 +45,25 @@ public class Desk : MonoBehaviour {
         EffectManager.Instance.EffectShow2();
 
         //禁止输入
-        playerCtrl.enableInput = false;
+        DataTransformer.enableInput = false;
 
         yield return new WaitForSeconds(pausedTime);
 
-
-        //显示提示框
-        //PromptManager.Instance.PromptShow("镜子碎了");
-
-
+        //播放音效
         MusicManager.instance.RandomPlay(audio);
-        //显示破碎的瓶子图片
-        Transform shatteredBottole = (this.gameObject.transform.GetChild(0)) as Transform;
-        shatteredBottole.gameObject.SetActive(true);
-        //隐藏正常的瓶子
-        Transform bottole = (this.gameObject.transform.GetChild(1)) as Transform;
-        bottole.gameObject.SetActive(false);
 
+        //显示破碎的瓶子图片
+        withoutBottole.SetActive(true);
+
+        //隐藏正常的瓶子
+        withBottole.SetActive(false);
+
+
+        //禁用触发脚本和Collider
+        GetComponent<Desk>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         //恢复输入
-        playerCtrl.enableInput = true;
+        DataTransformer.enableInput = true;
     }
 }
