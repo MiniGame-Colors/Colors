@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: f3077181f654d8042a41cc38147e78ac
-timeCreated: 1512722540
+guid: 44894c8ffef12cc419738312a71ad0bc
+timeCreated: 1513438368
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: NPC_head
+    21300002: NPC_body
+    21300004: NPC_hair
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,9 +66,105 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: NPC_head
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 268
+        width: 190
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 61}
+        - {x: -61, y: 25}
+        - {x: -47.106033, y: -80.90625}
+        - {x: -27.089645, y: -75.236694}
+        - {x: 32.71823, y: -79.36731}
+        - {x: 44.592346, y: -79.37607}
+        - {x: 64.372955, y: -46.62964}
+        - {x: 62.759216, y: 62.126526}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NPC_body
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 128
+        width: 285
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.369354, y: 78.62448}
+        - {x: -58.622437, y: 78.62448}
+        - {x: -95.5, y: -3}
+        - {x: -95.5, y: -53}
+        - {x: -79.5, y: -67}
+        - {x: -36.5, y: -73}
+        - {x: -19.5, y: -73}
+        - {x: -14.5, y: -68}
+        - {x: -14.5, y: -66}
+        - {x: -12.5, y: -73}
+        - {x: 13.5, y: -73}
+        - {x: 21.5, y: -72}
+        - {x: 90.5, y: -59}
+        - {x: 90.5, y: -23}
+        - {x: 57.5, y: 68}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NPC_hair
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 332
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1.83815, y: 4.8833923}
+        - {x: 1.6446686, y: 6.7532043}
+        - {x: 1.9849243, y: 8.711792}
+        - {x: 1.6411133, y: 10.930115}
+        - {x: 0.44050598, y: 8.65564}
+        - {x: -0.5719147, y: 6.6365967}
+        - {x: -1.5253143, y: 4.4210205}
+        - {x: -2.5715485, y: 1.9920044}
+        - {x: -3.225006, y: 0.40512085}
+        - {x: -3.8253174, y: -1.6678467}
+        - {x: -3.7084656, y: -3.9778748}
+        - {x: -3.6713257, y: -5.8497925}
+        - {x: -3.6689758, y: -7.579315}
+        - {x: -3.5039368, y: -9.764465}
+        - {x: -3.6689606, y: -12.911957}
+        - {x: -1.4991913, y: -10.554565}
+        - {x: -0.9486542, y: -8.544922}
+        - {x: -0.43363953, y: -6.5939026}
+        - {x: 0.43876648, y: -3.9787903}
+        - {x: 1.1504364, y: -1.7463074}
+        - {x: 1.1769714, y: 0.11404419}
+        - {x: 1.6261597, y: 1.8735352}
+        - {x: 1.6742401, y: 3.5730286}
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
