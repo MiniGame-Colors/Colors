@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4c349e86f3cd34899a30bd8c63bc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  activePower: 1
 --- !u!61 &246155800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8660,7 +8660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 409, y: -185}
+  m_AnchoredPosition: {x: 409, y: -157.03}
   m_SizeDelta: {x: 1048.7, y: 228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908350271
@@ -8717,7 +8717,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 62
     m_Alignment: 0
@@ -8726,7 +8726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6653\u98DE\uFF1A\u8FD9\u5C31\u662F\u6211\u7684\u5927\u5B66\u5417\uFF1F"
+  m_Text: Colors
 --- !u!222 &908350274
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10462,6 +10462,66 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1393126690999884, guid: ab99e35181f4d4743b85a5d4e4885186, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114224518110453262, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 003b332487fc3184ab9d1aab63b7fcfb,
+        type: 3}
+    - target: {fileID: 114258138361907072, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258138361907072, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258138361907072, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258138361907072, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_Text
+      value: "\u7A83\u53D6\u989C\u8272\u7684\u4EBA\uFF0C\u592A\u8FC7\u611A\u8822\r\n\u6211\u4E0D\u77E5\u660F\u8FF7\u591A\u65F6\uFF0C\u4E16\u754C\u4EA6\u9EEF\u7136\u53D7\u82E6\r\n\u8BF7\u628A\u989C\u8272\u8FD8\u7ED9\u6211\u4EEC\u3002\r\n\u795E\u554A\uFF0C\u4F60\u5FC3\u5DF2\u7ECF\u5411\u6211\uFF0C\u4E0D\u7136\u8FD9\u706B\u7130\uFF0C\u5982\u4F55\u718A\u718A\u71C3\u8D77\u3002"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258138361907072, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824083021005906, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 715
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824083021005906, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 915
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824083021005906, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224247593013273050, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 490.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224247593013273050, guid: ab99e35181f4d4743b85a5d4e4885186,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 700
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab99e35181f4d4743b85a5d4e4885186, type: 2}
   m_IsPrefabParent: 0
@@ -11405,7 +11465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4c349e86f3cd34899a30bd8c63bc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  activePower: 0
 --- !u!61 &1116405319
 BoxCollider2D:
   m_ObjectHideFlags: 0
