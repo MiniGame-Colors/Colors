@@ -18,7 +18,7 @@ public class TombManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if (Stay&&(Princess.position.y - this.transform.position.y)>4)
+        if (Stay)
         {
             time -= Time.deltaTime;
         }
@@ -37,10 +37,14 @@ public class TombManager : MonoBehaviour {
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Stay = true;
+        if (collision.gameObject.tag == "Player") {
+            Stay = true;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Stay = false;
+        if (collision.gameObject.tag == "Player") {
+            Stay = false;
+                }
     }
 }

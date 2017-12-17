@@ -21,7 +21,7 @@ public class FishManager : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       Debug.Log(collision.gameObject.tag);
+      // Debug.Log(collision.gameObject.tag);
         if (trigger)
         {
             if (collision.gameObject.tag == "RiverBottom")
@@ -39,5 +39,7 @@ public class FishManager : MonoBehaviour {
         }
     }
    
-    
+
+
+
 }

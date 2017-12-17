@@ -54,10 +54,12 @@ public class EnemyManager : MonoBehaviour {
             if (distance < 0)
             {
                 transform.Translate(-PursuitSpeed * Time.deltaTime, 0, 0);
+                scale.x = Mathf.Abs(scale.x);
             }
             else
             {
                 transform.Translate(PursuitSpeed * Time.deltaTime, 0, 0);
+                scale.x = -Mathf.Abs(scale.x);
             }
 
         }

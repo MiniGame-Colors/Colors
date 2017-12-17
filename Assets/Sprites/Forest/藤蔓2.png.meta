@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 94e053edb02de6e4b96f127b1a9109c6
-timeCreated: 1512357943
+guid: 103200e00b06107458eed9dc1071c25f
+timeCreated: 1513424813
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: "\u788E\u73BB\u7483_0"
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -40,7 +39,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -64,31 +63,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: "\u788E\u73BB\u7483_0"
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 126
-        width: 654
-        height: 97
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 
