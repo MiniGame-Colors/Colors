@@ -9,6 +9,7 @@ public class TowerDoor : MonoBehaviour {
 
     private GameObject player;
     private SpriteRenderer sprite;
+    private bool ready = false;
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -17,15 +18,34 @@ public class TowerDoor : MonoBehaviour {
         sprite = this.transform.parent.Find("TowerFront").GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
-        if (collision.CompareTag("Player")) {
-            if (Input.GetKeyDown(KeyCode.X)) {
-                sprite.sortingLayerName = sortingLayer;
+    private void Update() {
+        if(ready && Input.GetKeyDown(KeyCode.X)) {
+            sprite.sortingLayerName = sortingLayer;
 
-                player.transform.position = position;
-            }
+            player.transform.position = position;
         }
     }
 
+    //private void OnTriggerStay2D(Collider2D collision) {
+    //    if (collision.CompareTag("Player")) {
+    //        if (Input.GetKeyDown(KeyCode.X)) {
+    //            sprite.sortingLayerName = sortingLayer;
+
+    //            player.transform.position = position;
+    //        }
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            ready = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            ready = false;
+        }
+    }
 
 }

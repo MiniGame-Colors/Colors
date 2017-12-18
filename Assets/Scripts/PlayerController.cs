@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour {
 
     //主角的运动数值
     public float moveSpeed = 100.0f;
-    public float jumpSpeed = 250.0f;
+    public float jumpOutside = 650f;
+    public float jumpInside = 500f;
     public float minSpeedY = -5.0f;
 
     //打字机参数
@@ -24,10 +25,11 @@ public class PlayerController : MonoBehaviour {
     public GameObject talkPanel;
 
     private Transform groundCheck;
-    
     private Rigidbody2D body;
     private Animator animator;
     private GameObject lightObject;
+
+    private float jumpSpeed;
 
     //场景控制器实例
     private SceneController sceneCtrl;
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        jumpSpeed = transform.position.y > -19 ? jumpInside : jumpOutside;
+
         //检测能力是否觉醒
         lightObject.SetActive(DataTransformer.Awakening);
 

@@ -31,6 +31,8 @@ public class Climb : MonoBehaviour {
     private bool climb;
     //用于检测角色当前是否正在攀爬
     private bool hasClimbed = false;
+    //用于判断当前对象是不是角色准备攀爬的对象
+    private bool ready = false;
 
     private Rigidbody2D body;
 
@@ -63,7 +65,7 @@ public class Climb : MonoBehaviour {
         float v = Input.GetAxis("Vertical");
 
 
-        if(climb) {
+        if(ready && climb) {
             //当角色前方有可攀爬物体且按了向上的方向键时，进入攀爬操作
             if(v != 0) {
 
@@ -89,11 +91,16 @@ public class Climb : MonoBehaviour {
                 
                 body.velocity = new Vector2(0.0f, climbSpeed * Time.deltaTime * v);
 
-                player.transform.position = 
-                    new Vector2(player.transform.position.x, 
+                player.transform.position =
+                    new Vector2(player.transform.position.x,
                         Mathf.Clamp(player.transform.position.y, bottom.position.y, top.position.y));
 
+                /*-----------------------------------*/
+                /*---------这里播放攀爬音效----------*/
+            }
 
+            //进入攀爬状态才能左右转
+            if (hasClimbed) {
                 //角色攀爬时转身代码
                 float h = Input.GetAxis("Horizontal");
 
@@ -105,9 +112,6 @@ public class Climb : MonoBehaviour {
                     playerCtrl.Flip();
                     player.transform.position = new Vector2(left.position.x, player.transform.position.y);
                 }
-
-                /*-----------------------------------*/
-                /*---------这里播放攀爬音效----------*/
             }
 
             //退出攀爬状态
@@ -120,8 +124,24 @@ public class Climb : MonoBehaviour {
 
                 playerCtrl.Flip();
             }
+            
+        }
+    }
 
-        } 
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            ready = true;
+
+            Debug.Log(this.name);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            ready = false;
+
+            Debug.Log(this.name);
+        }
     }
 
 }

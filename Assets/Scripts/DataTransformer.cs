@@ -12,6 +12,7 @@ public static class DataTransformer {
     public static bool push = false;
     //是否禁用输入
     public static bool enableInput = true;
+
     //角色是否获得开启城堡大厅的钥匙
     public static bool keyOfHall = false;
 

@@ -23,18 +23,18 @@ public class Paint : MonoBehaviour {
         }
     }
 
-    //重置画像
-    IEnumerator Reset() {
-        yield return new WaitForSeconds(DataTransformer.restartTime);
+    ////重置画像
+    //IEnumerator Reset() {
+    //    yield return new WaitForSeconds(DataTransformer.restartTime);
 
-        blurry.SetActive(true);
+    //    blurry.SetActive(true);
 
-        GetComponent<BoxCollider2D>().enabled = false;
-    }
+    //    GetComponent<BoxCollider2D>().enabled = false;
+    //}
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-
+            Debug.Log("pick");
             //删除钥匙图片
 
             picked = true;

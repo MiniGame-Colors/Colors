@@ -5,18 +5,33 @@ using UnityEngine;
 public class BridgeController : MonoBehaviour {
 
     private Bridge bridge;
+    private bool ready;
+    private bool hasStarted = false;
 
     private void Awake() {
         bridge = this.transform.parent.Find("Bridge").gameObject.GetComponent<Bridge>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            if (Input.GetKeyDown(KeyCode.X)) {
-                bridge.Landing();
+            ready = true;
+        }
+    }
 
-                StartCoroutine(bridge.MoveCamera());
-            }
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            ready = false;
+        }
+    }
+
+    private void Update() {
+        if (!hasStarted && ready && Input.GetKeyDown(KeyCode.X)) {
+
+            bridge.Landing();
+
+            Destroy(transform.parent.Find("Wall").gameObject);
+
+            StartCoroutine(bridge.MoveCamera());
         }
     }
 }
