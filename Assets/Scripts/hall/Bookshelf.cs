@@ -5,10 +5,13 @@ using UnityEngine;
 public class Bookshelf : MonoBehaviour {
 
     public bool activePower;
+
+    private bool hasShowed = false;
     private string activePowerMessage = @"窃取颜色的人，太过愚蠢
 我不知昏迷多时，世界亦黯然受苦
 请把颜色还给我们。
 神啊，你心已经向我，不然这火焰，如何熊熊燃起。";
+
     private string otherMessage = @"《论颜色》
 物质产生的不同颜色的物理特性，被人们称为颜色。
 混沌中的物质需要通过颜色，成为独一无二的存在。
@@ -16,7 +19,7 @@ public class Bookshelf : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.CompareTag("Player")) {
+        if (!hasShowed && other.CompareTag("Player")) {
             if (activePower) {
                 DataTransformer.Awakening = true;
 
@@ -26,7 +29,14 @@ public class Bookshelf : MonoBehaviour {
 
                 PromptManager.Instance.PromptShow(otherMessage);
             }
+            hasShowed = true;
         }
 
     }
+
+    //private void OnTriggerExit2D(Collider2D collision) {
+    //    if (collision.CompareTag("Player")) {
+
+    //    }
+    //}
 }

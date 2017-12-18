@@ -6,11 +6,16 @@ public class Stairs : MonoBehaviour {
     
     private GameObject stairs;
     private SceneTransformation scene;
+    private BoxCollider2D col;
 
     void Awake () {
 
         stairs = transform.Find("Stairs").gameObject;
-	}
+
+        col = GetComponent<BoxCollider2D>();
+        col.enabled = false;
+
+    }
 	
 
 	void Update () {
@@ -19,12 +24,12 @@ public class Stairs : MonoBehaviour {
 
             scene = stairs.GetComponent<SceneTransformation>();
 
-            GetComponent<BoxCollider2D>().enabled = true;
+           col .enabled = true;
         }
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Enter");
+
         if (other.CompareTag("Player")) {
 
             StartCoroutine(scene.ChangeScene());

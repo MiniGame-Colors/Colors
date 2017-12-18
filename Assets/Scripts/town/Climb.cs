@@ -48,7 +48,6 @@ public class Climb : MonoBehaviour {
     private void Start() {
         //获取必要的引用对象
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player);
         playerCtrl = player.GetComponent<PlayerController>();
         animator = player.GetComponent<Animator>();
         frontCheck = player.transform.Find("frontCheck");

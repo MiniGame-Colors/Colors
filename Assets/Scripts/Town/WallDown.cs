@@ -2,39 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallDown : MonoBehaviour
-{
+public class WallDown : MonoBehaviour {
+    public float speed = 5f;
+    public Transform pillar;
+    public Transform bottom;
 
-    public GameObject wall;
-    public Transform secondFloor;
-    public float topLength = 0.0f; // 高出二层平面的距离
-    public float downTime = 8.0f;
+    private bool ready = false;
+    private GameObject active;
+    private GameObject inactive;
 
-    private bool canDown = false;
-    private float initialWallTop;
+    private void Awake() {
+        active = transform.Find("Active").gameObject;
 
-
-    private void Start()
-    {
-        initialWallTop = wall.transform.position.y + wall.GetComponent<BoxCollider2D>().size.x / 2 * wall.transform.localScale.x;
+        inactive = transform.Find("Inactive").gameObject;
     }
 
-    void Update()
-    {
-        float wallTop = wall.transform.position.y + wall.GetComponent<BoxCollider2D>().size.x / 2 * wall.transform.localScale.x;
-        bool isKeyDown = Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z);
-        if ( isKeyDown && canDown && wallTop - secondFloor.position.y > topLength)
-        {
-            wall.transform.Translate(-(initialWallTop - secondFloor.position.y) / (60 * downTime), 0, 0);
+
+    private void Update() {
+        if(ready && Input.GetKey(KeyCode.X)) {
+            active.SetActive(true);
+            inactive.SetActive(false);
+
+            float posY = Mathf.Lerp(pillar.position.y, bottom.position.y, speed * Time.deltaTime);
+            
+            pillar.position = new Vector3(pillar.position.x, posY, pillar.position.z);
+        } else {
+            active.SetActive(false);
+            inactive.SetActive(true);
         }
-
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            canDown = true;
+            ready = true;
         }
     }
 
@@ -42,7 +45,7 @@ public class WallDown : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canDown = false;
+            ready = false;
         }
     }
 }

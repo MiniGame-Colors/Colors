@@ -34,7 +34,6 @@ public class Paint : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-            Debug.Log("pick");
             //删除钥匙图片
 
             picked = true;
