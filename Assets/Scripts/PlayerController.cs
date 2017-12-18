@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour {
     IEnumerator Restart() {
         DataTransformer.dead = true;
         animator.SetBool("dead", true);
+
         DataTransformer.enableInput = false;
 
         yield return new WaitForSeconds(DataTransformer.restartTime);
@@ -101,6 +102,8 @@ public class PlayerController : MonoBehaviour {
                 jump = true;
         }else {
             this.body.gravityScale = 0;
+            //重置速度为0
+            body.velocity = Vector3.zero;
         }
     }
 
