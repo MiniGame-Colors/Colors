@@ -11,9 +11,10 @@ public class Stairs : MonoBehaviour {
     void Awake () {
 
         stairs = transform.Find("Stairs").gameObject;
-
+        scene = stairs.GetComponent<SceneTransformation>();
+        //stairs.SetActive(false);
         col = GetComponent<BoxCollider2D>();
-        col.enabled = false;
+        //col.enabled = false;
 
     }
 	
@@ -22,9 +23,9 @@ public class Stairs : MonoBehaviour {
         if (DataTransformer.Awakening && !stairs.activeSelf) {
             stairs.SetActive(true);
 
-            scene = stairs.GetComponent<SceneTransformation>();
+            
 
-           col .enabled = true;
+            col.enabled = true;
         }
 	}
 
@@ -33,6 +34,8 @@ public class Stairs : MonoBehaviour {
         if (other.CompareTag("Player")) {
 
             StartCoroutine(scene.ChangeScene());
+
+            //GetComponent<Stairs>().enabled = false;
         }
     }
 }

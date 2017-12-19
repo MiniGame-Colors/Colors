@@ -8,20 +8,23 @@ public class FishManager : MonoBehaviour {
     public int i=1;                  //方向
     public bool trigger = false;           //是否触发
     public GameObject BigFish;            //大鱼
-    // Use this for initialization
+
+    private PlayerController playCtrl;
+
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+
+        playCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
     {
         trigger = BigFish.GetComponent<BigFishManager>().trigger;
     }
-    // Update is called once per frame
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-      // Debug.Log(collision.gameObject.tag);
         if (trigger)
         {
             if (collision.gameObject.tag == "RiverBottom")
@@ -35,6 +38,7 @@ public class FishManager : MonoBehaviour {
             else if (collision.gameObject.tag == "Player")
             {
                 //触发公主死亡
+                //playCtrl.Death();
             }
         }
     }

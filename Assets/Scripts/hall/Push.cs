@@ -18,7 +18,7 @@ public class Push : MonoBehaviour {
 
     void Update() {
 
-        Collider2D[] cols = Physics2D.OverlapPointAll(frontCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        Collider2D[] cols = Physics2D.OverlapPointAll(frontCheck.position, 1 << LayerMask.NameToLayer("Push"));
 
         animator.SetBool("push", cols.Length > 0);
 

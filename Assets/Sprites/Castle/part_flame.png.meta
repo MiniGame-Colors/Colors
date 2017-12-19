@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 341cf849af078e5408244f96b869a520
-timeCreated: 1512358301
+guid: 37677b7f7edc58d4aab1c8dbee2ba92f
+timeCreated: 1513669531
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\u9A91\u58EB\u8096\u50CF\uFF08\u6A21\u7CCA\uFF09_0"
+    21300000: part_flame_0
+    21300002: part_flame_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -72,17 +73,63 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u9A91\u58EB\u8096\u50CF\uFF08\u6A21\u7CCA\uFF09_0"
+      name: part_flame_0
       rect:
         serializedVersion: 2
-        x: 85
-        y: 82
-        width: 255
-        height: 333
+        x: 0
+        y: 104
+        width: 232
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: part_flame_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 232
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

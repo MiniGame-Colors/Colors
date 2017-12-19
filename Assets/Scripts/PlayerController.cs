@@ -88,7 +88,8 @@ public class PlayerController : MonoBehaviour {
         lightObject.SetActive(DataTransformer.Awakening);
 
         //检测是否落地
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))
+                || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Push"));
         animator.SetBool("grounded", grounded);
 
         //用于实现禁用输入功能

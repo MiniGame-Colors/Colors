@@ -6,7 +6,6 @@ public class Bookshelf : MonoBehaviour {
 
     public bool activePower;
 
-    private bool hasShowed = false;
     private string activePowerMessage = @"窃取颜色的人，太过愚蠢
 我不知昏迷多时，世界亦黯然受苦
 请把颜色还给我们。
@@ -19,24 +18,22 @@ public class Bookshelf : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
 
-        if (!hasShowed && other.CompareTag("Player")) {
+        if (other.CompareTag("Player")) {
             if (activePower) {
                 DataTransformer.Awakening = true;
 
                 PromptManager.Instance.PromptShow(activePowerMessage);
 
+
+
             }else {
 
                 PromptManager.Instance.PromptShow(otherMessage);
             }
-            hasShowed = true;
+
+
+            GetComponent<BoxCollider2D>().enabled = false;
         }
 
     }
-
-    //private void OnTriggerExit2D(Collider2D collision) {
-    //    if (collision.CompareTag("Player")) {
-
-    //    }
-    //}
 }

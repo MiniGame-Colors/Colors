@@ -5,11 +5,15 @@ using UnityEngine;
 public class Paint : MonoBehaviour {
     
     private GameObject blurry;
+    private GameObject key;
+
     private bool picked = false;
 	
 	void Awake() {
         //获取模糊的骑士画像
         blurry = transform.Find("Blurry").gameObject;
+
+        key = transform.Find("Key").gameObject;
     }
 
 
@@ -20,24 +24,18 @@ public class Paint : MonoBehaviour {
 
                 GetComponent<BoxCollider2D>().enabled = true;
             }
+        } else {
+            DataTransformer.keyOfHall = !key.activeSelf;
         }
     }
 
-    ////重置画像
-    //IEnumerator Reset() {
-    //    yield return new WaitForSeconds(DataTransformer.restartTime);
-
-    //    blurry.SetActive(true);
-
-    //    GetComponent<BoxCollider2D>().enabled = false;
-    //}
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+    void OnTriggerStay2D(Collider2D other) {
+        if (!picked && other.CompareTag("Player") && Input.GetKey(KeyCode.X)) {
             //删除钥匙图片
+            key.SetActive(false);
+
 
             picked = true;
-            DataTransformer.keyOfHall = true;
         }
     }
 }

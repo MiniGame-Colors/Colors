@@ -10,8 +10,10 @@ public class Enemy2Manager : MonoBehaviour {
     public float distance;                         //与公主的距离
     public float DeadDistance = 1;                 //接触死亡距离
     public bool state = false;                     //是否追击
+
+    private PlayerController playCtrl;
     void Start () {
-		
+        playCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,8 @@ public class Enemy2Manager : MonoBehaviour {
         {
             //调用公主死亡的动画，并且结束
             state = false;
+            //调用公主死亡函数
+            //playCtrl.Death();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
