@@ -30,7 +30,7 @@ public class Door : MonoBehaviour {
             if (key) {
 
                 if (DataTransformer.keyOfHall) {
-                    follow.changeToTown();
+                    //follow.changeToTown();
                     StartCoroutine(scene.ChangeScene());
                 }else {
                     //播放门打不开的音效

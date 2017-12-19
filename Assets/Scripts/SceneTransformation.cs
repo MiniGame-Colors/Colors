@@ -23,21 +23,31 @@ public class SceneTransformation : MonoBehaviour
         follow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
     }
 
-
+    public void ChooseDestination() {
+        if (targetPlace.position.y > -4.5) {
+            follow.ChangeToBedroom();
+        } else if (targetPlace.position.y < -4.5 && targetPlace.position.y > -20.2) {
+            follow.ChangeToHall();
+        } else if (targetPlace.position.y < -20.2 && targetPlace.position.y > -48.8) {
+            follow.ChangeToTown();
+        } else if (targetPlace.position.y < -48.8 && targetPlace.position.y > -79.9) {
+            follow.ChangeToForest();
+        } else if (targetPlace.position.y < -79.9 && targetPlace.position.y > -112.8) {
+            follow.ChangeToAltar();
+        }
+    }
 
     public IEnumerator ChangeScene()
     {
         DataTransformer.enableInput = false;
         //进入转换场景状态
         DataTransformer.changeScene = true;
-        
 
         yield return new WaitForSeconds(pausedTime);
 
-        
-        DataTransformer.enableInput = true;
+        ChooseDestination();
 
-        
+        DataTransformer.enableInput = true;
 
         player.position = new Vector3(targetPlace.position.x, targetPlace.position.y, player.position.z);
         cam.position = new Vector3(player.position.x, player.position.y, cam.position.z);

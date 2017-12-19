@@ -33,10 +33,17 @@ public class CameraFollow : MonoBehaviour {
     private Vector3 maxXAndY;
     private Vector3 minXAndY;
 
+    private bool change = false;
+
     private Transform player;
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        maxXAndY.x = bedroomRightTop.position.x;
+        maxXAndY.y = bedroomRightTop.position.y;
+        minXAndY.x = bedroomLeftBottom.position.x;
+        minXAndY.y = bedroomLeftBottom.position.y;
     }
 
     bool CheckXMargin() {
@@ -48,39 +55,73 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private void Update() {
-        float posY = player.position.y;
+        //float posY = player.position.y;
 
-        if (posY > -4.5) {
-            currentLeftBottom = bedroomLeftBottom.position;
-            currentRightTop = bedroomRightTop.position;
-        } else if (posY < -4.5 && posY > -20.2) {
-            currentLeftBottom = hallLeftBottom.position;
-            currentRightTop = hallRightTop.position;
-        } else if (posY < -20.2 && posY > -48.8) {
-            currentLeftBottom = townLeftBottom.position;
-            currentRightTop = townRightTop.position;
-        } else if (posY < -48.8 && posY > -79.9) {
-            currentLeftBottom = forestLeftBottom.position;
-            currentRightTop = forestRightTop.position;
-        } else if (posY < -79.9 && posY > -112.8) {
-            currentLeftBottom = altarLeftBottom.position;
-            currentRightTop = altarRightTop.position;
+        //if (posY > -4.5) {
+        //    currentLeftBottom = bedroomLeftBottom.position;
+        //    currentRightTop = bedroomRightTop.position;
+        //} else if (posY < -4.5 && posY > -20.2) {
+        //    currentLeftBottom = hallLeftBottom.position;
+        //    currentRightTop = hallRightTop.position;
+        //} else if (posY < -20.2 && posY > -48.8) {
+        //    currentLeftBottom = townLeftBottom.position;
+        //    currentRightTop = townRightTop.position;
+        //} else if (posY < -48.8 && posY > -79.9) {
+        //    currentLeftBottom = forestLeftBottom.position;
+        //    currentRightTop = forestRightTop.position;
+        //} else if (posY < -79.9 && posY > -112.8) {
+        //    currentLeftBottom = altarLeftBottom.position;
+        //    currentRightTop = altarRightTop.position;
+        //}
+
+        //maxXAndY.x = currentRightTop.x;
+        //maxXAndY.y = currentRightTop.y;
+        //minXAndY.x = currentLeftBottom.x;
+        //minXAndY.y = currentLeftBottom.y;
+
+        if (change) {
+            maxXAndY.x = currentRightTop.x;
+            maxXAndY.y = currentRightTop.y;
+            minXAndY.x = currentLeftBottom.x;
+            minXAndY.y = currentLeftBottom.y;
+
+            change = false;
         }
-
-        maxXAndY.x = currentRightTop.x;
-        maxXAndY.y = currentRightTop.y;
-        minXAndY.x = currentLeftBottom.x;
-        minXAndY.y = currentLeftBottom.y;
     }
 
-    public void changeToTown() {
+    public void ChangeToTown() {
         currentLeftBottom = townLeftBottom.position;
         currentRightTop = townRightTop.position;
 
-        maxXAndY.x = currentRightTop.x;
-        maxXAndY.y = currentRightTop.y;
-        minXAndY.x = currentLeftBottom.x;
-        minXAndY.y = currentLeftBottom.y;
+        change = true;
+    }
+
+    public void ChangeToBedroom() {
+        currentLeftBottom = bedroomLeftBottom.position;
+        currentRightTop = bedroomRightTop.position;
+
+        change = true;
+    }
+
+    public void ChangeToHall() {
+        currentLeftBottom = hallLeftBottom.position;
+        currentRightTop = hallRightTop.position;
+
+        change = true;
+    }
+
+    public void ChangeToForest() {
+        currentLeftBottom = forestLeftBottom.position;
+        currentRightTop = forestRightTop.position;
+
+        change = true;
+    }
+
+    public void ChangeToAltar() {
+        currentLeftBottom = altarLeftBottom.position;
+        currentRightTop = altarRightTop.position;
+
+        change = true;
     }
 
     private void FixedUpdate() {
@@ -88,24 +129,10 @@ public class CameraFollow : MonoBehaviour {
     }
 
     void TrackPlayer() {
-        //if (!DataTransformer.changeScene) {
-        //    float targetX = transform.position.x;
-        //    float targetY = transform.position.y;
+        if (change) {
+            return;
+        }
 
-        //    if (CheckXMargin()) {
-        //        targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
-        //    }
-
-        //    if (CheckYMargin()) {
-        //        targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
-        //    }
-
-
-        //    targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
-        //    targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
-
-        //    transform.position = new Vector3(targetX, targetY, transform.position.z);
-        //}
         float targetX = transform.position.x;
         float targetY = transform.position.y;
 
