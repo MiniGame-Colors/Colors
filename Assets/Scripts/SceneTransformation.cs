@@ -1,22 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+
 public class SceneTransformation : MonoBehaviour
 {
 
     public Transform targetPlace;
     public float pausedTime;
-    public Collider2D cameraMoveRange;
+
 
     private Transform player;
     private SceneController sceneCtrl;
-    
+    private Transform cam;
+    private CameraFollow follow;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
+
+        cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        follow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
     }
 
 
@@ -26,24 +30,23 @@ public class SceneTransformation : MonoBehaviour
         DataTransformer.enableInput = false;
         //进入转换场景状态
         DataTransformer.changeScene = true;
+        
 
         yield return new WaitForSeconds(pausedTime);
 
+        
         DataTransformer.enableInput = true;
+
+        
+
+        player.position = new Vector3(targetPlace.position.x, targetPlace.position.y, player.position.z);
+        cam.position = new Vector3(player.position.x, player.position.y, cam.position.z);
+
         //退出场景转换状态
         DataTransformer.changeScene = false;
 
-        player.position = new Vector3(targetPlace.position.x, targetPlace.position.y, player.position.z);
-
-
-        if (cameraMoveRange)
-        {
-            GameObject CameraManager = GameObject.Find("CameraManager");
-            Destroy(CameraManager.GetComponent<CinemachineConfiner>());
-            CameraManager.AddComponent<CinemachineConfiner>().m_BoundingShape2D = cameraMoveRange;
-        }
-
         sceneCtrl.Save();
         DataTransformer.position = player.position;
+        
     }
 }

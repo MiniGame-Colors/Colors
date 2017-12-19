@@ -15,17 +15,16 @@ public class Bridge : MonoBehaviour {
 
     private Vector3 playerPos;
     private GameObject higherDoor;
-    private CinemachineVirtualCamera cam;
-    private CameraMoveController mainCamCtrl;
+    private CameraFollow follow;
+    public GameObject cam;
 
     private void Awake() {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-        cam = GameObject.Find("CameraManager").GetComponent<CinemachineVirtualCamera>();
-
         higherDoor = this.transform.parent.Find("HigherDoor").gameObject;
 
-        mainCamCtrl = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMoveController>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
+        follow = cam.GetComponent<CameraFollow>();
     }
 
 
@@ -33,12 +32,8 @@ public class Bridge : MonoBehaviour {
         GetComponent<Rigidbody2D>().gravityScale = gravityScale;
 
         start = true;
-
-        //禁用补丁
-        mainCamCtrl.enabled = false;
-        //移动摄像机到吊桥那里
-        cam.enabled = false;
-
+        //禁用镜头脚本
+        follow.enabled = false;
         DataTransformer.enableInput = false;
 
         //播放吊桥音效
@@ -49,11 +44,7 @@ public class Bridge : MonoBehaviour {
             start = false;
             end = true;
 
-            
-            //把镜头移动回来
-            cam.enabled = true;
-            //开启补丁
-            mainCamCtrl.enabled = true;
+            follow.enabled = true;
 
             //公主可以正常下楼
             higherDoor.SetActive(true);

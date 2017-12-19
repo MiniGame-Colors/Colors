@@ -28,11 +28,13 @@ public class BridgeController : MonoBehaviour {
             Destroy(transform.parent.Find("Wall").gameObject);
         }
 
-        if(bridge.start && !bridge.end) {
-            Vector3 position = Vector3.Lerp(start.position, end.position, speed * Time.deltaTime);
+        if(bridge.start) {
+            if (!bridge.end) {
+                Vector3 position = Vector3.Lerp(start.position, end.position, speed * Time.deltaTime);
 
-            mainCam.transform.position = position;
-        }
+                mainCam.transform.position = position;
+            } 
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
