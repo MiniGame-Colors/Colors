@@ -8,8 +8,11 @@ public class Enemy2Manager : MonoBehaviour {
     public float PursuitSpeed = 2;                 //敌人追击速度
     public float time;
     public float distance;                         //与公主的距离
-    public float DeadDistance = 1;                 //接触死亡距离
+    public float DeadDistance = 2;                 //接触死亡距离
     public bool state = false;                     //是否追击
+    public float DeadDistanceY = 10;
+    public float distanceY;
+
 
     private PlayerController playCtrl;
     void Start () {
@@ -21,24 +24,18 @@ public class Enemy2Manager : MonoBehaviour {
         Vector3 scale = transform.localScale; //设置scale变量
         distance = Princess.transform.position.x - transform.position.x;
 
-        float distanceY = Princess.transform.position.y - transform.position.y;
-        if (Mathf.Abs(distance) < DeadDistance && Mathf.Abs(distanceY) < DeadDistance)               //公主死亡
-        {
-            //调用公主死亡的动画，并且结束
-            state = false;
-            //调用公主死亡函数
-            playCtrl.Death();
-        }
+        distanceY = Princess.transform.position.y - transform.position.y;
+       
         if (Input.GetKeyDown(KeyCode.X))
         {
-            state = true;
-            if (distance < 0)
-            {
-                scale.x = Mathf.Abs(scale.x);
-            }
-            else
-            {
-                scale.x = -Mathf.Abs(scale.x);
+            if (distanceY < DeadDistanceY) {
+                state = true;
+                if (distance < 0) {
+                    scale.x = Mathf.Abs(scale.x);
+                } else {
+                    scale.x = -Mathf.Abs(scale.x);
+                }
+                transform.localScale = scale; //重新赋值
             }
         }
         if (state)
@@ -51,6 +48,17 @@ public class Enemy2Manager : MonoBehaviour {
             {
                 transform.Translate(PursuitSpeed * Time.deltaTime, 0, 0);
             }
+
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision) {
+      //  Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Player") {
+            //调用公主死亡的动画，并且结束
+            state = false;
+            //调用公主死亡函数
+            playCtrl.Death();
+        }
+    }
+
 }

@@ -62,13 +62,13 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator Restart() {
         DataTransformer.dead = true;
-        animator.SetBool("dead", true);
+        animator.SetTrigger("death");
 
         DataTransformer.enableInput = false;
 
         yield return new WaitForSeconds(DataTransformer.restartTime);
 
-        animator.SetBool("dead", false);
+        animator.SetTrigger("restart");
         DataTransformer.enableInput = true;
         DataTransformer.dead = false;
 
