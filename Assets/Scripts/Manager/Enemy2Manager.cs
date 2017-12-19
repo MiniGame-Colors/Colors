@@ -20,12 +20,14 @@ public class Enemy2Manager : MonoBehaviour {
 	void Update () {
         Vector3 scale = transform.localScale; //设置scale变量
         distance = Princess.transform.position.x - transform.position.x;
-        if (Mathf.Abs(distance) < DeadDistance)               //公主死亡
+
+        float distanceY = Princess.transform.position.y - transform.position.y;
+        if (Mathf.Abs(distance) < DeadDistance && Mathf.Abs(distanceY) < DeadDistance)               //公主死亡
         {
             //调用公主死亡的动画，并且结束
             state = false;
             //调用公主死亡函数
-            //playCtrl.Death();
+            playCtrl.Death();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {

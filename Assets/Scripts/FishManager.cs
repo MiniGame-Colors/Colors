@@ -38,7 +38,7 @@ public class FishManager : MonoBehaviour {
             else if (collision.gameObject.tag == "Player")
             {
                 //触发公主死亡
-                //playCtrl.Death();
+                playCtrl.Death();
             }
         }
     }

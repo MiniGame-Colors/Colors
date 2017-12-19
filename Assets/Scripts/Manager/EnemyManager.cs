@@ -30,10 +30,10 @@ public class EnemyManager : MonoBehaviour {
         if (Mathf.Abs(distance) < AlertDistance)
         {
             EnemyState = 1;
-            if (Mathf.Abs(distance) < DeadDistance)               //公主死亡
-            {
+            float distanceY = Princess.transform.position.y - transform.position.y;
+            if (Mathf.Abs(distance) < DeadDistance && Mathf.Abs(distanceY) < DeadDistance) {
                 //调用公主死亡的动画，并且结束
-                //playCtrl.Death();
+                playCtrl.Death();
             }
             
         }
