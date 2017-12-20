@@ -40,10 +40,11 @@ public class CameraFollow : MonoBehaviour {
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        maxXAndY.x = bedroomRightTop.position.x;
-        maxXAndY.y = bedroomRightTop.position.y;
-        minXAndY.x = bedroomLeftBottom.position.x;
-        minXAndY.y = bedroomLeftBottom.position.y;
+        //maxXAndY.x = bedroomRightTop.position.x;
+        //maxXAndY.y = bedroomRightTop.position.y;
+        //minXAndY.x = bedroomLeftBottom.position.x;
+        //minXAndY.y = bedroomLeftBottom.position.y;
+        ChangeToTown();
     }
 
     bool CheckXMargin() {
