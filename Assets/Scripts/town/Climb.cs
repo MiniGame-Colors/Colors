@@ -114,7 +114,7 @@ public class Climb : MonoBehaviour {
             }
 
             //退出攀爬状态
-            if (Input.GetButtonDown("Jump")) {
+            if (Input.GetButtonDown("Jump") && hasClimbed) {
                 DataTransformer.enableInput = true;
 
                 hasClimbed = false;

@@ -40,11 +40,8 @@ public class CameraFollow : MonoBehaviour {
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        //maxXAndY.x = bedroomRightTop.position.x;
-        //maxXAndY.y = bedroomRightTop.position.y;
-        //minXAndY.x = bedroomLeftBottom.position.x;
-        //minXAndY.y = bedroomLeftBottom.position.y;
-        ChangeToTown();
+        ChangeToBedroom();
+        //ChangeToTown();
     }
 
     bool CheckXMargin() {
@@ -56,30 +53,6 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private void Update() {
-        //float posY = player.position.y;
-
-        //if (posY > -4.5) {
-        //    currentLeftBottom = bedroomLeftBottom.position;
-        //    currentRightTop = bedroomRightTop.position;
-        //} else if (posY < -4.5 && posY > -20.2) {
-        //    currentLeftBottom = hallLeftBottom.position;
-        //    currentRightTop = hallRightTop.position;
-        //} else if (posY < -20.2 && posY > -48.8) {
-        //    currentLeftBottom = townLeftBottom.position;
-        //    currentRightTop = townRightTop.position;
-        //} else if (posY < -48.8 && posY > -79.9) {
-        //    currentLeftBottom = forestLeftBottom.position;
-        //    currentRightTop = forestRightTop.position;
-        //} else if (posY < -79.9 && posY > -112.8) {
-        //    currentLeftBottom = altarLeftBottom.position;
-        //    currentRightTop = altarRightTop.position;
-        //}
-
-        //maxXAndY.x = currentRightTop.x;
-        //maxXAndY.y = currentRightTop.y;
-        //minXAndY.x = currentLeftBottom.x;
-        //minXAndY.y = currentLeftBottom.y;
-
         if (change) {
             maxXAndY.x = currentRightTop.x;
             maxXAndY.y = currentRightTop.y;
@@ -137,6 +110,21 @@ public class CameraFollow : MonoBehaviour {
         float targetX = transform.position.x;
         float targetY = transform.position.y;
 
+        if (CheckXMargin()) {
+            targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
+        }
+
+        if (CheckYMargin()) {
+            targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
+        }
+
+
+        targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
+        targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
+
+        transform.position = new Vector3(targetX, targetY, transform.position.z);
+
+        //双插值
         if (CheckXMargin()) {
             targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
         }

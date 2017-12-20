@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: 8f60c39210bc34849a7bf67db11fcf57
+timeCreated: 1513754465
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wolf body
+    21300002: wolf foot
+    21300004: "\u72FC_2"
+    21300006: wolf -
+    21300008: wolf head
+    21300010: wolf f foot b
+    21300012: wolf foot little
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: wolf body
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 623
+        width: 723
+        height: 305
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40.460083, y: 108.664856}
+        - {x: -52.19226, y: 122.14496}
+        - {x: -90.26483, y: 110.66901}
+        - {x: -108.31946, y: 83.19507}
+        - {x: -119.79199, y: 56.58496}
+        - {x: -127.51459, y: 40.71881}
+        - {x: -134.14426, y: 24.788513}
+        - {x: -145.88712, y: 10.797424}
+        - {x: -161.42249, y: -3.159668}
+        - {x: -176.05682, y: -21.469421}
+        - {x: -172.32361, y: -32.41626}
+        - {x: -145.25433, y: -35.37616}
+        - {x: -136.77441, y: -43.133545}
+        - {x: -124.01276, y: -48.022766}
+        - {x: -108.954285, y: -49.60956}
+        - {x: -94.37665, y: -49.126648}
+        - {x: -91.02521, y: -58.09613}
+        - {x: -48.812195, y: -77.38977}
+        - {x: 69.156555, y: -48.55127}
+        - {x: 94.7561, y: -58.39624}
+        - {x: 107.36365, y: -48.004578}
+        - {x: 117.98511, y: -39.699036}
+        - {x: 132.6051, y: -33.312927}
+        - {x: 150.13715, y: -38.346924}
+        - {x: 160.96307, y: -28.2453}
+        - {x: 154.4253, y: 1.743042}
+        - {x: 151.66852, y: 22.427246}
+        - {x: 145.16815, y: 41.802856}
+        - {x: 125.97406, y: 54.437927}
+        - {x: 5.041321, y: 119.80194}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf foot
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 590
+        width: 74
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4.0937805, y: 35}
+        - {x: -36.68747, y: -8.359351}
+        - {x: -36.68747, y: -35}
+        - {x: -16.99997, y: -35}
+        - {x: 37, y: 2.8906488}
+        - {x: 37, y: 35}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u72FC_2"
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 469
+        width: 165
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -82.499985, y: 17.593746}
+        - {x: -25.320435, y: -12.298401}
+        - {x: 5.048401, y: -5.8988647}
+        - {x: 13.069458, y: 1.5910645}
+        - {x: 19.8432, y: 15.278748}
+        - {x: 10.48114, y: 48.78839}
+        - {x: 4.642517, y: 70.96124}
+        - {x: -15.840149, y: 78}
+        - {x: -81.093735, y: 78}
+        - {x: -82.499985, y: 76.65624}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf -
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 752
+        width: 269
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.912476, y: 43.392395}
+        - {x: -61.15143, y: 33.675293}
+        - {x: -79.92145, y: 2.7684326}
+        - {x: -77.90466, y: -16.866882}
+        - {x: -68.52368, y: -33.317993}
+        - {x: -52.751526, y: -40.775085}
+        - {x: 17.806274, y: -34.168335}
+        - {x: 104.78124, y: -2.453127}
+        - {x: 104.78124, y: 22.859373}
+        - {x: 41.499996, y: 42.54687}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf head
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 738
+        width: 433
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110.04462, y: 72.49042}
+        - {x: -15.217743, y: 86.02942}
+        - {x: -96.73436, y: 75.656235}
+        - {x: -117.82811, y: 46.12498}
+        - {x: -131.16507, y: -28.975342}
+        - {x: -117.82811, y: -91.687515}
+        - {x: -62.908752, y: -104.385864}
+        - {x: 50.394287, y: -91.897095}
+        - {x: 85.10544, y: -97.08069}
+        - {x: 112.35669, y: -101.181274}
+        - {x: 138.19946, y: -100.00195}
+        - {x: 166.05658, y: -80.44702}
+        - {x: 173.98328, y: -52.826233}
+        - {x: 189.82605, y: -19.177551}
+        - {x: 192.04889, y: 11.407227}
+        - {x: 182.88245, y: 66.76495}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf f foot b
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 584
+        width: 113
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.955139, y: 77}
+        - {x: -15.146484, y: 75.359375}
+        - {x: -35.859375, y: 63.687527}
+        - {x: -56.5, y: 46.812527}
+        - {x: -49.656586, y: 32.297607}
+        - {x: -42.193542, y: 26.786926}
+        - {x: -32.837708, y: 25.416443}
+        - {x: -25.536072, y: 26.534973}
+        - {x: -19.669434, y: 34.310852}
+        - {x: -11.883636, y: 39.991455}
+        - {x: -7.0307007, y: 44.60089}
+        - {x: -1.4169006, y: 50.40857}
+        - {x: 3.4420166, y: 54.82898}
+        - {x: 9.341492, y: 60.133423}
+        - {x: 14.812439, y: 64.84314}
+        - {x: 19.38092, y: 68.02338}
+        - {x: 11.79303, y: 76.384766}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wolf foot little
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 399
+        width: 196
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37.640617, y: -8.109369}
+        - {x: 15.796881, y: -8.109369}
+        - {x: 15.796881, y: 39.70313}
+        - {x: -10.255554, y: 64.02545}
+        - {x: -53.014893, y: 76.689026}
+        - {x: -69.407166, y: 75.30658}
+        - {x: -88.26282, y: 69.37958}
+        - {x: -92.49634, y: 47.021545}
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
