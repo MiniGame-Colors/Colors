@@ -6,7 +6,7 @@ public class Paper : MonoBehaviour {
 
     public string content;
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerStay2D(Collider2D collision) {
         if (collision.CompareTag("Player") && Input.GetKey(KeyCode.X)) {
             PromptManager.Instance.PromptShow(content);
 

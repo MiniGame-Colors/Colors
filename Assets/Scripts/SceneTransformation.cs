@@ -23,19 +23,33 @@ public class SceneTransformation : MonoBehaviour
         follow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
     }
 
-    public void ChooseDestination() {
-        if (targetPlace.position.y > -4.5) {
-            follow.ChangeToBedroom();
-        } else if (targetPlace.position.y < -4.5 && targetPlace.position.y > -20.2) {
-            follow.ChangeToHall();
-        } else if (targetPlace.position.y < -20.2 && targetPlace.position.y > -48.8) {
-            follow.ChangeToTown();
-        } else if (targetPlace.position.y < -48.8 && targetPlace.position.y > -79.9) {
-            follow.ChangeToForest();
-        } else if (targetPlace.position.y < -79.9 && targetPlace.position.y > -112.8) {
-            follow.ChangeToAltar();
-        }
+  public void ChooseDestination()
+  {
+    if (targetPlace.position.y > -4.5)
+    {
+      follow.ChangeToBedroom();
     }
+    else if (targetPlace.position.y < -4.5 && targetPlace.position.y > -20.2)
+    {
+      follow.ChangeToHall();
+    }
+    else if (targetPlace.position.y < -20.2 && targetPlace.position.y > -48.8)
+    {
+      follow.ChangeToTown();
+    }
+    else if (targetPlace.position.y < -48.8 && targetPlace.position.y > -79.9)
+    {
+      follow.ChangeToForest();
+    }
+    else if (targetPlace.position.y < -79.9 && targetPlace.position.y > -112.8 && targetPlace.position.x < 50)
+    {
+      follow.ChangeToAltar();
+    }
+    else if (targetPlace.position.y < -79.9 && targetPlace.position.y > -112.8 && targetPlace.position.x > 50)
+    {
+      follow.ChangeToEnd();
+    }
+  }
 
     public IEnumerator ChangeScene()
     {

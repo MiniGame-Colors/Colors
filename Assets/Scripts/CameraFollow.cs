@@ -26,8 +26,12 @@ public class CameraFollow : MonoBehaviour {
     public Transform altarLeftBottom;
     public Transform altarRightTop;
 
+  public Transform endLeftBottom;
+  public Transform endRightTop;
+
     private Vector3 currentLeftBottom;
     private Vector3 currentRightTop;
+
 
     //镜头可移动的范围
     private Vector3 maxXAndY;
@@ -39,10 +43,11 @@ public class CameraFollow : MonoBehaviour {
 
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        //ChangeToBedroom();
-        ChangeToTown();
-    }
+        ChangeToBedroom();
+        //ChangeToTown();
+        //ChangeToForest();
+        //ChangeToAltar();
+  }
 
     bool CheckXMargin() {
         return Mathf.Abs(transform.position.x - player.position.x) > xMargin;
@@ -98,8 +103,16 @@ public class CameraFollow : MonoBehaviour {
         change = true;
     }
 
+  public void ChangeToEnd()
+  {
+    currentLeftBottom = endLeftBottom.position;
+    currentRightTop = endRightTop.position;
 
-    private void FixedUpdate() {
+    change = true;
+  }
+
+
+  private void FixedUpdate() {
         TrackPlayer();
 
         //TrackPlayer();
