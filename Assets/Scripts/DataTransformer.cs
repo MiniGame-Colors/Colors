@@ -16,8 +16,7 @@ public static class DataTransformer {
     //角色是否获得开启城堡大厅的钥匙
     public static bool keyOfHall = false;
 
-    //重新开始游戏的等待时间
-    public static float restartTime = 2.0f;
+    
     //当前是否处于场景转换状态
     public static bool changeScene = false;
 

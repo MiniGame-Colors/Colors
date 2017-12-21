@@ -28,5 +28,7 @@ public class SceneController : MonoBehaviour {
 
         sceneClone = Instantiate(scene);
         sceneClone.SetActive(false);
+
+        DataTransformer.position = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 }

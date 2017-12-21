@@ -44,10 +44,10 @@ public class CameraFollow : MonoBehaviour {
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ChangeToBedroom();
+        //ChangeToAltar();
         //ChangeToTown();
         //ChangeToForest();
-        //ChangeToAltar();
-  }
+    }
 
     bool CheckXMargin() {
         return Mathf.Abs(transform.position.x - player.position.x) > xMargin;
@@ -103,19 +103,16 @@ public class CameraFollow : MonoBehaviour {
         change = true;
     }
 
-  public void ChangeToEnd()
-  {
-    currentLeftBottom = endLeftBottom.position;
-    currentRightTop = endRightTop.position;
+    public void ChangeToEnd() {
+        currentLeftBottom = endLeftBottom.position;
+        currentRightTop = endRightTop.position;
 
-    change = true;
-  }
+        change = true;
+    }
 
 
-  private void FixedUpdate() {
+    private void FixedUpdate() {
         TrackPlayer();
-
-        //TrackPlayer();
     }
 
     void TrackPlayer() {
@@ -139,21 +136,6 @@ public class CameraFollow : MonoBehaviour {
         targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
 
         transform.position = new Vector3(targetX, targetY, transform.position.z);
-
-        ////双插值
-        //if (CheckXMargin()) {
-        //    targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
-        //}
-
-        //if (CheckYMargin()) {
-        //    targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
-        //}
-
-
-        //targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
-        //targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
-
-        //transform.position = new Vector3(targetX, targetY, transform.position.z);
 
         ////双插值
         //if (CheckXMargin()) {

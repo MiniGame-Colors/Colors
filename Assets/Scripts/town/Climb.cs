@@ -67,7 +67,7 @@ public class Climb : MonoBehaviour {
         if(ready && climb) {
             //当角色前方有可攀爬物体且按了向上的方向键时，进入攀爬操作
             if(v != 0) {
-
+                
                 if (!hasClimbed) {
 
                     //固定角色攀爬的位置
@@ -130,16 +130,12 @@ public class Climb : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             ready = true;
-
-            Debug.Log(this.name);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             ready = false;
-
-            Debug.Log(this.name);
         }
     }
 

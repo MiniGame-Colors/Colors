@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool grounded = true;
 
+    public float restartTime = 3.0f;
 
     public AudioClip[] jumpAudio;
     public AudioClip[] deathAudio;
@@ -34,6 +35,10 @@ public class PlayerController : MonoBehaviour {
     //场景控制器实例
     private SceneController sceneCtrl;
 
+    private GameObject cam;
+
+    private bool stop = false;
+
     void Awake() {
         //获取刚体组件实例
         body = GetComponent<Rigidbody2D>();
@@ -43,39 +48,65 @@ public class PlayerController : MonoBehaviour {
         lightObject = transform.Find("light").gameObject;
 
         sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
+
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
+
         sceneCtrl.Save();
         //初始化存档位置
-        DataTransformer.position = transform.position;
+        //DataTransformer.position = transform.position;
     }
 
 
     //死亡函数
-    public void Death() {
+    public void Death(float restartTime = 3.0f) {
         
         /*-----------------------------------*/
         /*--------这里播放死亡的音效---------*/
 
-        StartCoroutine(Restart());
+        StartCoroutine(Restart(restartTime));
 
         
     }
+    public void Death() {
 
-    IEnumerator Restart() {
+        /*-----------------------------------*/
+        /*--------这里播放死亡的音效---------*/
+
+        StartCoroutine(Restart(restartTime));
+
+
+    }
+
+    IEnumerator Restart(float restartTime) {
+
         DataTransformer.dead = true;
         animator.SetTrigger("death");
 
         DataTransformer.enableInput = false;
 
-        yield return new WaitForSeconds(DataTransformer.restartTime);
+        
+
+        yield return new WaitForSeconds(restartTime);
+
+        cam.transform.position = new Vector3(cam.transform.position.x,
+            cam.transform.position.y, -cam.transform.position.z);
 
         animator.SetTrigger("restart");
-        DataTransformer.enableInput = true;
-        DataTransformer.dead = false;
 
         //重置场景
         sceneCtrl.Reset();
         //让角色回到存档的位置
         this.transform.position = DataTransformer.position;
+
+        yield return new WaitForSeconds(1f);
+
+        cam.transform.position = new Vector3(cam.transform.position.x,
+            cam.transform.position.y, -cam.transform.position.z);
+
+        DataTransformer.enableInput = true;
+        DataTransformer.dead = false;
+
+        
     }
 
 
@@ -94,6 +125,10 @@ public class PlayerController : MonoBehaviour {
 
         //用于实现禁用输入功能
         if (DataTransformer.enableInput) {
+            if (stop) {
+                stop = false;
+            }
+
             this.body.gravityScale = 2;
 
             //对话框
@@ -107,8 +142,12 @@ public class PlayerController : MonoBehaviour {
                 jump = true;
         }else {
             this.body.gravityScale = 0;
-            //重置速度为0
-            body.velocity = Vector3.zero;
+            if (!stop) {
+                //重置速度为0
+                body.velocity = Vector3.zero;
+
+                stop = true;
+            }
         }
     }
 

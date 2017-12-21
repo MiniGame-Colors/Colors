@@ -48,6 +48,7 @@ public class NPC : MonoBehaviour {
     }
 
     private IEnumerator Show() {
+        GetComponent<CircleCollider2D>().enabled = false;
 
         show = true;
 
@@ -65,7 +66,7 @@ public class NPC : MonoBehaviour {
         camera.orthographicSize = originSize;
         follow.enabled = true;
 
-        GetComponent<CircleCollider2D>().enabled = false;
+        //GetComponent<CircleCollider2D>().enabled = false;
 
         show = false;
     }

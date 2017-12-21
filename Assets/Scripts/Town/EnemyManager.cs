@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour {
     private void FixedUpdate() {
         Detect();
 
-        if(!calmdown && Mathf.Abs(transform.position.x - target) <= 0.1) {
+        if((!calmdown && Mathf.Abs(transform.position.x - target) <= 0.1) || body.velocity.x == 0) {
             body.velocity = new Vector2(0, 0);
 
             calmdown = true;
@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour {
 
                 target = player.position.x;
 
-                body.velocity = new Vector2(Mathf.Sign(distance) * speed, 0);
+                body.velocity = new Vector2(Mathf.Sign(distance) * speed, body.velocity.y);
             }
         }
     }
@@ -68,7 +68,7 @@ public class EnemyManager : MonoBehaviour {
 
             target = player.position.x;
 
-            body.velocity = new Vector2(Mathf.Sign(distance) * crazySpeed, 0);
+            body.velocity = new Vector2(Mathf.Sign(distance) * crazySpeed, body.velocity.y);
         }
 
     }

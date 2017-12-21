@@ -70,7 +70,7 @@ public class SceneTransformation : MonoBehaviour
         DataTransformer.changeScene = false;
 
         sceneCtrl.Save();
-        DataTransformer.position = player.position;
+        
         
     }
 }

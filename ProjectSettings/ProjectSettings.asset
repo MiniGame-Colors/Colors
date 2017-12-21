@@ -74,7 +74,7 @@ PlayerSettings:
   Prepare IOS For Recording: 0
   Force IOS Speakers When Recording: 0
   submitAnalytics: 1
-  usePlayerLog: 1
+  usePlayerLog: 0
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   resizableWindow: 0
@@ -122,7 +122,7 @@ PlayerSettings:
     5:4: 0
     16:10: 0
     16:9: 1
-    Others: 0
+    Others: 1
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0

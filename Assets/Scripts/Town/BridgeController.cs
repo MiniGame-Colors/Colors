@@ -23,6 +23,8 @@ public class BridgeController : MonoBehaviour {
     private void Update() {
         if (!hasStarted && ready && Input.GetKeyDown(KeyCode.X)) {
 
+            GetComponent<CircleCollider2D>().enabled = false;
+
             bridge.Landing();
 
             Destroy(transform.parent.Find("Wall").gameObject);
