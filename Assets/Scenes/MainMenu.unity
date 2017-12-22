@@ -544,7 +544,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: "\u56DE\u9000"
 --- !u!222 &595955020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5294,7 +5294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159.45001, y: -134.54999}
+  m_AnchoredPosition: {x: 288, y: -281.90997}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754311453
@@ -5561,7 +5561,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1847533705}
         m_MethodName: chooseSceneToLoad
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5616,6 +5616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c892e1ff69151bb438719a4390389f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneIndex: 1
 --- !u!1 &1939653062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5648,8 +5649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159.45001, y: -44.85}
-  m_SizeDelta: {x: 300, y: 60}
+  m_AnchoredPosition: {x: 288, y: -119.909996}
+  m_SizeDelta: {x: 543.9, y: 215.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939653064
 MonoBehaviour:
@@ -5672,18 +5673,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 130
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F7F\u7528\u952E\u76D8\u4E0A\u4E0B\u5DE6\u53F3\u79FB\u52A8\uFF0C\u952E\u76D8X\u952E\u4E3A\u4EA4\u4E92\u952E\u3002"
+  m_Text: "\u65B9\u6848\u4E00\uFF1A\u4F7F\u7528\u952E\u76D8\u5DE6\u53F3\u952E\u5DE6\u53F3\u79FB\u52A8\uFF0CX\u952E\u4E3A\u4EA4\u4E92\u952E\uFF0C\u7A7A\u683C\u952E\u4E3A\u8DF3\u8DC3\u952E\u3002\n\u65B9\u6848\u4E8C\uFF1A\u4F7F\u7528\u952E\u76D8AD\u952E\u5DE6\u53F3\u79FB\u52A8\uFF0CJ\u952E\u4E3A\u4EA4\u4E92\u952E\uFF0C\u7A7A\u683C\u952E\u4E3A\u8DF3\u8DC3\u952E\n\u65B9\u6848\u4E09\uFF1A\u4F7F\u7528Xbox\u624B\u67C4\u5DE6\u6447\u6746\u5DE6\u53F3\u79FB\u52A8\uFF0CX\u952E\u4E3A\u4EA4\u4E92\u952E\uFF0CY\u952E\u4E3A\u8DF3\u8DC3\u952E"
 --- !u!222 &1939653065
 CanvasRenderer:
   m_ObjectHideFlags: 0
