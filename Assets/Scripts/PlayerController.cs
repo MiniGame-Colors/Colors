@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     private bool stop = false;
 
     void Awake() {
+        
         //获取刚体组件实例
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
