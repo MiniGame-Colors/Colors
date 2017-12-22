@@ -13,13 +13,11 @@ public class Bridge : MonoBehaviour {
     //播放动画是否停止
     public bool end = false;
 
-    private Vector3 playerPos;
     private GameObject higherDoor;
     private CameraFollow follow;
     public GameObject cam;
 
     private void Awake() {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
         higherDoor = this.transform.parent.Find("HigherDoor").gameObject;
 
@@ -50,6 +48,9 @@ public class Bridge : MonoBehaviour {
             higherDoor.SetActive(true);
 
             DataTransformer.enableInput = true;
+
+            GetComponent<HingeJoint2D>().enabled = false;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }
 }

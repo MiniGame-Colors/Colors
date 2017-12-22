@@ -7,18 +7,15 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour {
     public bool key;
 
-    private Transform player;
-
     private SceneTransformation scene;
 
-    private CameraFollow follow;
+    //private CameraFollow follow;
 
     void Start() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         scene = GetComponent<SceneTransformation>();
 
-        follow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
+        //follow = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>();
     }
 
 
@@ -30,7 +27,7 @@ public class Door : MonoBehaviour {
             if (key) {
 
                 if (DataTransformer.keyOfHall) {
-                    //follow.changeToTown();
+
                     StartCoroutine(scene.ChangeScene());
                 }else {
                     //播放门打不开的音效

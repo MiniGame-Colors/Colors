@@ -28,8 +28,11 @@ public class EnemyManager : MonoBehaviour {
     private void FixedUpdate() {
         Detect();
 
-        if((!calmdown && Mathf.Abs(transform.position.x - target) <= 0.1) || body.velocity.x == 0) {
-            body.velocity = new Vector2(0, 0);
+        Debug.Log(body.velocity.x);
+        if(!calmdown && (Mathf.Abs(transform.position.x - target) <= 0.1 || Mathf.Abs(body.velocity.x) < 0.1)) {
+
+
+            body.velocity = new Vector2(0, body.velocity.y);
 
             calmdown = true;
 
