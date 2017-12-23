@@ -9,14 +9,15 @@ public class ArchivePoint : MonoBehaviour {
     private SceneController sceneCtrl;
 
 
-    // Use this for initialization
     void Start () {
         sceneCtrl = GameObject.Find("SceneController").GetComponent<SceneController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            PromptManager.Instance.PromptShow(content);
+            if(content.Length > 0) {
+                PromptManager.Instance.PromptShow(content);
+            }
 
             sceneCtrl.Save();
         }
