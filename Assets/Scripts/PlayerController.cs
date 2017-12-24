@@ -53,8 +53,6 @@ public class PlayerController : MonoBehaviour {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
 
         sceneCtrl.Save();
-        //初始化存档位置
-        //DataTransformer.position = transform.position;
     }
 
 
